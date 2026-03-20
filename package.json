@@ -1,0 +1,31 @@
+{
+  "name": "itf-risyu-suggest",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "data:export": "tsx scripts/export-courses-csv.ts && tsx scripts/export-curriculum-csv.ts",
+    "data:import": "tsx scripts/import-courses-csv.ts && tsx scripts/import-curriculum-csv.ts"
+  },
+  "dependencies": {
+    "next": "^15.5.14",
+    "papaparse": "^5.5.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.21.0",
+    "typescript": "^5"
+  }
+}

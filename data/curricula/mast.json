@@ -1,0 +1,88 @@
+{
+  "id": "mast",
+  "name": "情報メディア創成学類",
+  "gakugun": "情報学群",
+  "totalCreditsRequired": 124,
+  "annualCreditCap": 45,
+  "annualCreditCapExtended": 55,
+  "promotionRequirements": {
+    "year3to4": { "minCredits": 100 }
+  },
+  "categories": [
+    {
+      "name": "専門科目（必修）",
+      "type": "required",
+      "minCredits": 10,
+      "courses": [
+        "GC27202",
+        "GC27302",
+        "GC27402"
+      ]
+    },
+    {
+      "name": "情報学群共通専門基礎科目",
+      "type": "required",
+      "minCredits": 14,
+      "courses": [
+        "GA12111",
+        "GA12201",
+        "GA12301",
+        "GA12401",
+        "GA13401",
+        "GA13501",
+        "GA14111",
+        "GA14201",
+        "GA14301",
+        "GA15131",
+        "GA15231",
+        "GA15331",
+        "GA18222",
+        "GA18322"
+      ]
+    },
+    {
+      "name": "専門基礎科目（選択）",
+      "type": "elective",
+      "minCredits": 32,
+      "maxCredits": 47,
+      "prefixes": ["GC2", "GA1"]
+    },
+    {
+      "name": "共通科目（必修）— ファーストイヤーセミナー",
+      "type": "required",
+      "minCredits": 1,
+      "courses": ["1119102"]
+    },
+    {
+      "name": "共通科目（必修）— 情報リテラシー",
+      "type": "required",
+      "minCredits": 3,
+      "courses": ["6125101", "6425102", "6525102"]
+    },
+    {
+      "name": "共通科目（必修）— 英語",
+      "type": "required",
+      "minCredits": 4,
+      "courses": ["31HC102", "31JC102", "31KC102", "31LC102"]
+    },
+    {
+      "name": "共通科目（必修）— 体育",
+      "type": "required",
+      "minCredits": 2,
+      "prefixes": ["210", "212"]
+    },
+    {
+      "name": "共通科目（選択）",
+      "type": "elective",
+      "minCredits": 4,
+      "prefixes": ["12", "37", "82", "FB"]
+    },
+    {
+      "name": "基礎科目（関連）",
+      "type": "elective",
+      "minCredits": 6,
+      "maxCredits": 15,
+      "description": "他学群開講科目"
+    }
+  ]
+}

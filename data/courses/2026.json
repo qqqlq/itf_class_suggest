@@ -1,0 +1,736 @@
+{
+  "GC20201": {
+    "name": "線形代数B",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [
+      "GA15231"
+    ],
+    "instructor": ""
+  },
+  "GC20301": {
+    "name": "メディア社会学",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月2",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC21101": {
+    "name": "認知科学",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "火2",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC21201": {
+    "name": "コンピュータシステムとOS",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC21301": {
+    "name": "メディア工学概論",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春C"
+    ],
+    "dayPeriod": "月2",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC22101": {
+    "name": "データ構造とアルゴリズム",
+    "credits": 3,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "火1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [
+      "GA18222"
+    ],
+    "instructor": ""
+  },
+  "GC22201": {
+    "name": "データ構造とアルゴリズム実習",
+    "credits": 1.5,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "水1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [
+      "GA18222"
+    ],
+    "instructor": ""
+  },
+  "GC22301": {
+    "name": "情報数学B",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [
+      "GA15131"
+    ],
+    "instructor": ""
+  },
+  "GC22401": {
+    "name": "情報理論",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC22501": {
+    "name": "コンピュータネットワーク",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "水4",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC22601": {
+    "name": "微分積分B",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "水3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [
+      "GA15331"
+    ],
+    "instructor": ""
+  },
+  "GC23101": {
+    "name": "確率と統計",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "月1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC23201": {
+    "name": "信号システム",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "火1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC23301": {
+    "name": "統計分析法",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC23401": {
+    "name": "情報探索論",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "火3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC24101": {
+    "name": "Webプログラミング",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋C",
+      "春A"
+    ],
+    "dayPeriod": "金1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC24201": {
+    "name": "情報理論",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "月2",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC24301": {
+    "name": "人間計測の方法",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC24401": {
+    "name": "情報理論",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "金5",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC20401": {
+    "name": "プログラミング",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "水5",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [
+      "GA18222",
+      "GA18322"
+    ],
+    "instructor": ""
+  },
+  "GC20501": {
+    "name": "コンピュータリテラシー",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "木2",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC20601": {
+    "name": "メディアコンテンツ開発",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "水5",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC20701": {
+    "name": "コンテンツ応用論",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春C"
+    ],
+    "dayPeriod": "水3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC20801": {
+    "name": "情報デザイン",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春C"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC21401": {
+    "name": "情報社会と法制度",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC21501": {
+    "name": "情報数学C",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木2",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC21601": {
+    "name": "データ文学概論",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "木1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC27302": {
+    "name": "情報メディア特別演習II",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "春A",
+      "春B",
+      "春C",
+      "秋A",
+      "秋B",
+      "秋C"
+    ],
+    "dayPeriod": "水4",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [
+      "GC27202"
+    ],
+    "instructor": ""
+  },
+  "GC20901": {
+    "name": "ACPC通年講義",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "月5",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC27202": {
+    "name": "情報メディア特別演習I",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B",
+      "春C",
+      "秋A",
+      "秋B",
+      "秋C"
+    ],
+    "dayPeriod": "水4",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA15131": {
+    "name": "情報数学A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "月5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA15231": {
+    "name": "線形代数A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA15331": {
+    "name": "微分積分A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金4",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA18222": {
+    "name": "プログラミング入門A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金4",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA18322": {
+    "name": "プログラミング入門B",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "金4",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [
+      "GA18222"
+    ],
+    "instructor": ""
+  },
+  "GA12111": {
+    "name": "知能と情報科学",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春A"
+    ],
+    "dayPeriod": "月2",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA12201": {
+    "name": "計算と情報科学",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春B"
+    ],
+    "dayPeriod": "月2",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA12301": {
+    "name": "システムと情報科学",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春C"
+    ],
+    "dayPeriod": "月2",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA12401": {
+    "name": "情報科学概論",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋A"
+    ],
+    "dayPeriod": "火4",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA13401": {
+    "name": "情報メディア入門",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋A"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA13501": {
+    "name": "コンテンツ入門",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA14111": {
+    "name": "知識情報概論",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋B"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA14201": {
+    "name": "知識情報システム概説",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "火4",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GA14301": {
+    "name": "図書館概論",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "水3",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC20101": {
+    "name": "メディア社会学",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月2",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  }
+}
