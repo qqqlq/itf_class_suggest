@@ -7,7 +7,16 @@ import type {
 } from "@/types";
 import { checkGroupRequirements, flattenRequirements } from "./requirementChecker";
 import { buildTimetableSlots, hasConflict } from "./timetableResolver";
-import { getStandardYear, getDisplayName, findCourseIdByName } from "./kdbEnricher";
+import { getStandardYear, getDisplayName, findCourseIdByName, parseKdbStandardYear } from "./kdbEnricher";
+
+/** KdBのterm文字列（"春AB" 等）をモジュールリストに変換 */
+function termToModules(term: string | undefined): string[] {
+  if (!term) return [];
+  const season = term.match(/[春秋]/)?.[0] ?? "";
+  const periods = term.match(/[A-C]/g) ?? [];
+  if (!season || periods.length === 0) return [];
+  return periods.map((p) => season + p);
+}
 
 const MIN_ANNUAL_CREDITS = 40;
 
@@ -84,8 +93,23 @@ export function suggestCourses(
     const displayName = getDisplayName(courseId, courseMaster, kdbDict);
     if (passedCourseNames.has(displayName)) return;
 
-    const course = courseMaster[courseId];
-    if (!course) return;
+    // courseMasterになければkdbDictから最低限の情報を合成
+    let course: CourseData | undefined = courseMaster[courseId];
+    if (!course) {
+      const kdb = kdbDict[courseId];
+      if (!kdb) return;
+      course = {
+        name: kdb.name ?? courseId,
+        credits: kdb.credits ?? 2,
+        standardYear: parseKdbStandardYear(kdb.standardYear) ?? 1,
+        modules: termToModules(kdb.term),
+        dayPeriod: "",
+        category: kdb.kdbCategory ?? "",
+        prefixes: [],
+        prerequisites: [],
+        instructor: "",
+      };
+    }
 
     // 時間割の衝突チェック
     const currentSlots = buildTimetableSlots(suggestions);
