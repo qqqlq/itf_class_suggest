@@ -44,5 +44,14 @@ next-env.d.ts
 .claude/settings.local.json
 CLAUDE.md
 
-# 個人情報
-itf_risyu_docs/SIRS202510069.csv
+# 開発・参考資料 (Reference Materials)
+mihon.jpg
+risyunosusume.jpeg
+kisokamokunorisyuhouhou.pdf
+mast_sotugyo.xlsx
+itf_risyu_docs/
+
+# Local/Misc
+*.tsbuildinfo
+.DS_Store
+.claude/

@@ -7,6 +7,7 @@ import type {
   GroupRequirementStatus,
   Curriculum,
   CourseData,
+  KdbEntry,
 } from "@/types";
 import { parseTwinsCSV } from "@/lib/csvParser";
 import { checkGroupRequirements } from "@/lib/requirementChecker";
@@ -33,7 +34,7 @@ export default function Home() {
   const curriculum = curriculumData as Curriculum;
   const courseMaster = courseMasterData as Record<string, CourseData>;
   // Explicitly cast to avoid TS indexing issues
-  const kdbDict = kdbDictData as Record<string, { standardYear?: string; kdbCategory?: string }>;
+  const kdbDict = kdbDictData as Record<string, KdbEntry>;
 
   const handleCsvUpload = (csvText: string) => {
     try {
@@ -48,7 +49,8 @@ export default function Home() {
         parsed,
         curriculum,
         courseMaster,
-        parsed.currentYear
+        parsed.currentYear,
+        kdbDict
       );
       setSuggestions(suggested);
       setActiveTab("progress");
@@ -107,6 +109,7 @@ export default function Home() {
                   groupRequirements={groupRequirements}
                   curriculum={curriculum}
                   courseMaster={courseMaster}
+                  kdbDict={kdbDict}
                 />
               )}
 

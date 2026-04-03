@@ -62,6 +62,15 @@ export interface CurriculumCategory {
   description?: string;
 }
 
+// KdB辞書エントリ（kdb_dict.jsonから）
+export interface KdbEntry {
+  name?: string;
+  credits?: number;
+  standardYear?: string;
+  term?: string;
+  kdbCategory?: string;
+}
+
 // 科目マスタ（JSON上のデータ、idなし）
 export interface CourseData {
   name: string;

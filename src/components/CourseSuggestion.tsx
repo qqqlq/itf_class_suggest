@@ -14,11 +14,11 @@ const PRIORITY_LABELS: Record<SuggestedCourse["priority"], string> = {
   low: "低",
 };
 
-const PRIORITY_BADGE: Record<SuggestedCourse["priority"], string> = {
-  highest: "bg-red-100 text-red-700 border-red-200",
-  high: "bg-orange-100 text-orange-700 border-orange-200",
-  medium: "bg-blue-100 text-blue-700 border-blue-200",
-  low: "bg-slate-100 text-slate-500 border-slate-200",
+const PRIORITY_STYLE: Record<SuggestedCourse["priority"], { bg: string; color: string; border: string }> = {
+  highest: { bg: "rgba(254,226,226,0.8)", color: "#991b1b", border: "#fca5a5" },
+  high: { bg: "rgba(254,243,199,0.8)", color: "#92400e", border: "#fcd34d" },
+  medium: { bg: "rgba(219,234,254,0.7)", color: "#1e40af", border: "#93c5fd" },
+  low: { bg: "rgba(241,245,249,0.8)", color: "#475569", border: "#cbd5e1" },
 };
 
 export default function CourseSuggestion({ suggestions, currentYear }: CourseSuggestionProps) {
@@ -30,75 +30,171 @@ export default function CourseSuggestion({ suggestions, currentYear }: CourseSug
       ? { color: "var(--color-success)", note: "" }
       : { color: "var(--color-warning)", note: "⚠ 40単位未満" };
 
+  const groups: Record<string, SuggestedCourse[]> = {};
+  for (const s of suggestions) {
+    const g = s.categoryName;
+    if (!groups[g]) groups[g] = [];
+    groups[g].push(s);
+  }
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
       {/* 概要バー */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyItems: 'space-between' }}>
-        <h3 className="font-semibold text-primary" style={{ flex: 1, fontSize: '1.125rem' }}>
-          {currentYear}年次向けの履修提案
-          <span className="text-tertiary" style={{ fontSize: '0.75rem', marginLeft: '1rem', fontWeight: 'normal' }}>※ 該当学年に配当されている未修得科目を優先しています</span>
-        </h3>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}>
-          <span className="text-secondary">提案合計:</span>
-          <span style={{ fontWeight: 'bold', color: creditStatus.color }}>{totalCredits} 単位</span>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "1rem 1.25rem",
+          borderRadius: "12px",
+          background: "var(--color-bg)",
+          border: "1px solid var(--color-border)",
+          gap: "1rem",
+          flexWrap: "wrap",
+        }}
+      >
+        <div>
+          <div style={{ fontWeight: 700, fontSize: "1rem", color: "var(--color-primary)" }}>
+            {currentYear}年次の推奨履修リスト
+          </div>
+          <div style={{ fontSize: "0.75rem", color: "var(--color-tertiary)", marginTop: "0.25rem" }}>
+            最優先 = 取り逃がし・必修、中 = カテゴリ充足のため推薦、低 = 単位数確保のため提案
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          <span style={{ fontSize: "0.85rem", color: "var(--color-secondary)" }}>合計:</span>
+          <span style={{ fontWeight: 800, fontSize: "1.1rem", color: creditStatus.color }}>
+            {totalCredits}単位
+          </span>
           {creditStatus.note && (
-            <span style={{ fontSize: '0.75rem', fontWeight: 500, color: creditStatus.color }}>
+            <span style={{ fontSize: "0.75rem", color: creditStatus.color, fontWeight: 600 }}>
               {creditStatus.note}
             </span>
           )}
         </div>
       </div>
 
-      {/* テーブル */}
-      <div className="overflow-x-auto rounded-lg border border-slate-200">
-        <table className="w-full text-sm border-collapse">
-          <thead>
-            <tr className="bg-slate-50 border-b border-slate-200 sticky top-0">
-              <th className="text-left px-3 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">優先度</th>
-              <th className="text-left px-3 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">科目番号</th>
-              <th className="text-left px-3 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">科目名</th>
-              <th className="text-center px-3 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">単位</th>
-              <th className="text-left px-3 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">曜日時限</th>
-              <th className="text-left px-3 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">モジュール</th>
-              <th className="text-left px-3 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">理由</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {suggestions.map((s, idx) => (
-              <tr
-                key={s.course.id}
-                className={`hover:bg-slate-50 transition-colors ${
-                  idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"
-                }`}
-              >
-                <td className="px-3 py-2.5">
+      {/* カテゴリ別リスト */}
+      {Object.entries(groups).map(([category, items]) => (
+        <div key={category}>
+          <div
+            style={{
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              color: "var(--color-secondary)",
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+              marginBottom: "0.5rem",
+              paddingLeft: "0.25rem",
+            }}
+          >
+            {category}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.4rem",
+              borderRadius: "10px",
+              overflow: "hidden",
+              border: "1px solid var(--color-border)",
+            }}
+          >
+            {items.map((s, idx) => {
+              const ps = PRIORITY_STYLE[s.priority];
+              return (
+                <div
+                  key={s.course.id}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "auto 1fr auto auto",
+                    gap: "0.75rem",
+                    alignItems: "center",
+                    padding: "0.65rem 1rem",
+                    background: idx % 2 === 0 ? "var(--color-surface)" : "var(--color-bg)",
+                    borderTop: idx > 0 ? "1px solid var(--color-border)" : "none",
+                  }}
+                >
+                  {/* 優先度バッジ */}
                   <span
-                    className={`inline-block text-xs px-2.5 py-0.5 rounded-full border font-medium ${
-                      PRIORITY_BADGE[s.priority]
-                    }`}
+                    style={{
+                      padding: "0.15rem 0.5rem",
+                      borderRadius: "5px",
+                      background: ps.bg,
+                      color: ps.color,
+                      border: `1px solid ${ps.border}`,
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      whiteSpace: "nowrap",
+                    }}
                   >
                     {PRIORITY_LABELS[s.priority]}
                   </span>
-                </td>
-                <td className="px-3 py-2.5 font-mono text-xs text-slate-500">
-                  {s.course.id}
-                </td>
-                <td className="px-3 py-2.5 font-medium text-slate-800">
-                  {s.course.name}
-                </td>
-                <td className="px-3 py-2.5 text-center text-slate-600">
-                  {s.course.credits}
-                </td>
-                <td className="px-3 py-2.5 text-slate-600">{s.course.dayPeriod}</td>
-                <td className="px-3 py-2.5 text-xs text-slate-500">
-                  {s.course.modules.join(", ")}
-                </td>
-                <td className="px-3 py-2.5 text-xs text-slate-400">{s.reason}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+
+                  {/* 科目名・番号 */}
+                  <div style={{ minWidth: 0 }}>
+                    <div
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "0.875rem",
+                        color: "var(--color-primary)",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {s.course.name}
+                    </div>
+                    <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.15rem", alignItems: "center" }}>
+                      <span
+                        style={{
+                          fontSize: "0.65rem",
+                          fontFamily: "monospace",
+                          color: "var(--color-tertiary)",
+                        }}
+                      >
+                        {s.course.id}
+                      </span>
+                      {s.reason && (
+                        <span style={{ fontSize: "0.65rem", color: "var(--color-secondary)" }}>
+                          · {s.reason}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* 曜日時限 */}
+                  <div style={{ textAlign: "center", whiteSpace: "nowrap" }}>
+                    {s.course.dayPeriod && s.course.dayPeriod !== "by appointment" ? (
+                      <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--color-primary)" }}>
+                        {s.course.dayPeriod}
+                      </span>
+                    ) : (
+                      <span style={{ fontSize: "0.7rem", color: "var(--color-tertiary)" }}>随時</span>
+                    )}
+                    <div style={{ fontSize: "0.65rem", color: "var(--color-tertiary)", marginTop: "0.1rem" }}>
+                      {s.course.modules.join("/")}
+                    </div>
+                  </div>
+
+                  {/* 単位数 */}
+                  <div
+                    style={{
+                      fontWeight: 700,
+                      fontSize: "0.875rem",
+                      color: "var(--color-secondary)",
+                      textAlign: "right",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {s.course.credits}単位
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

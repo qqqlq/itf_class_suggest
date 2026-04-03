@@ -3,9 +3,11 @@ import type {
   Curriculum,
   CourseData,
   SuggestedCourse,
+  KdbEntry,
 } from "@/types";
 import { checkGroupRequirements, flattenRequirements } from "./requirementChecker";
 import { buildTimetableSlots, hasConflict } from "./timetableResolver";
+import { getStandardYear, getDisplayName } from "./kdbEnricher";
 
 const MIN_ANNUAL_CREDITS = 40;
 
@@ -41,7 +43,8 @@ export function suggestCourses(
   student: StudentData,
   curriculum: Curriculum,
   courseMaster: Record<string, CourseData>,
-  targetYear: number
+  targetYear: number,
+  kdbDict: Record<string, KdbEntry> = {}
 ): SuggestedCourse[] {
   const suggestions: SuggestedCourse[] = [];
   const addedCourseIds = new Set<string>();
@@ -69,21 +72,29 @@ export function suggestCourses(
     if (hasConflict(course, currentSlots)) return;
 
     addedCourseIds.add(courseId);
+    // KdBから日本語名・年次を補完
+    const displayName = getDisplayName(courseId, courseMaster, kdbDict);
     suggestions.push({
-      course: { ...course, id: courseId },
+      course: { ...course, id: courseId, name: displayName },
       priority,
       reason,
       categoryName,
     });
   }
 
-  // Phase 1: 必修科目の自動追加
+  // Phase 1: 取り逃がした必修科目（標準年次が currentYear 以下）を最優先
   for (const req of requirements) {
     if (req.type !== "required") continue;
     for (const courseId of req.missingCourses) {
-      const course = courseMaster[courseId];
-      if (course && course.standardYear <= targetYear) {
-        addSuggestion(courseId, "highest", "必修（未取得）", req.categoryName);
+      const stdYear = getStandardYear(courseId, courseMaster, kdbDict);
+      if (stdYear <= targetYear) {
+        const isOverdue = stdYear < targetYear;
+        addSuggestion(
+          courseId,
+          "highest",
+          isOverdue ? `必修・取り逃がし（${stdYear}年次配当）` : "必修（未取得）",
+          req.categoryName
+        );
       }
     }
   }
@@ -100,7 +111,7 @@ export function suggestCourses(
     }
   }
 
-  // Phase 3: 選択科目の推薦
+  // Phase 3: 選択科目の推薦（該当学年のもの優先）
   const electiveReqs = requirements
     .filter((r) => r.type === "elective" && !r.fulfilled)
     .sort((a, b) => (b.minCredits - b.earnedCredits) - (a.minCredits - a.earnedCredits));
@@ -112,7 +123,8 @@ export function suggestCourses(
 
     const filtered = Object.entries(courseMaster).filter(([id, course]) => {
       if (passedCourseIds.has(id) || addedCourseIds.has(id)) return false;
-      if (course.standardYear > targetYear) return false;
+      const stdYear = getStandardYear(id, courseMaster, kdbDict);
+      if (stdYear > targetYear) return false;
       if (category.prefixes) {
         return category.prefixes.some((p) => id.startsWith(p));
       }
@@ -124,9 +136,11 @@ export function suggestCourses(
 
     // 同名科目が複数ある場合は GC 優先で絞り込み
     const candidates = deduplicateByName(filtered).sort(
-      ([idA, a], [idB, b]) =>
-        a.standardYear - b.standardYear ||
-        prefixPriority(idA) - prefixPriority(idB)
+      ([idA, a], [idB, b]) => {
+        const ya = getStandardYear(idA, courseMaster, kdbDict);
+        const yb = getStandardYear(idB, courseMaster, kdbDict);
+        return ya - yb || prefixPriority(idA) - prefixPriority(idB);
+      }
     );
 
     for (const [courseId] of candidates) {
@@ -137,13 +151,14 @@ export function suggestCourses(
     }
   }
 
-  // Phase 4: 40単位以上確保
+  // Phase 4: 40単位以上確保（該当学年の科目で補填）
   const totalSuggested = suggestions.reduce((sum, s) => sum + s.course.credits, 0);
   if (totalSuggested < MIN_ANNUAL_CREDITS) {
     const remaining = deduplicateByName(
-      Object.entries(courseMaster).filter(([id, course]) => {
+      Object.entries(courseMaster).filter(([id]) => {
         if (passedCourseIds.has(id) || addedCourseIds.has(id)) return false;
-        return course.standardYear === targetYear;
+        const stdYear = getStandardYear(id, courseMaster, kdbDict);
+        return stdYear === targetYear;
       })
     ).sort(
       ([idA, a], [idB, b]) =>
@@ -161,7 +176,6 @@ export function suggestCourses(
     }
   }
 
-  // 45単位超の警告は呼び出し側で処理
   return suggestions;
 }
 

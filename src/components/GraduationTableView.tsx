@@ -5,13 +5,16 @@ import type {
   RequirementStatus,
   CurriculumCategory,
   StudentData,
+  KdbEntry,
 } from "@/types";
+import { getStandardYear, getDisplayName, findCourseIdByName } from "@/lib/kdbEnricher";
 
 interface GraduationTableViewProps {
   student: StudentData;
   groupRequirements: GroupRequirementStatus[];
   curriculum: Curriculum;
   courseMaster: Record<string, CourseData>;
+  kdbDict?: Record<string, KdbEntry>;
 }
 
 interface CourseCell {
@@ -28,7 +31,8 @@ function buildCourseCells(
   req: RequirementStatus,
   cat: CurriculumCategory,
   courseMaster: Record<string, CourseData>,
-  currentYear: number
+  currentYear: number,
+  kdbDict: Record<string, KdbEntry> = {}
 ): CourseCell[] {
   const cells: CourseCell[] = [];
   const completedIds = new Set(req.matchedCourses.map((g) => g.courseId));
@@ -36,7 +40,9 @@ function buildCourseCells(
   // 取得済み科目（必ず表示）
   req.matchedCourses.forEach((grade) => {
     const courseData = courseMaster[grade.courseId];
-    const standardYear = grade.standardYear ? parseInt(grade.standardYear, 10) : courseData?.standardYear;
+    const standardYear = grade.standardYear
+      ? parseInt(grade.standardYear, 10)
+      : courseData?.standardYear;
     
     cells.push({
       id: grade.courseId,
@@ -52,26 +58,34 @@ function buildCourseCells(
   if (cat.type === "required" && req.missingCourses.length > 0) {
     req.missingCourses.forEach((courseIdOrName) => {
       if (!completedIds.has(courseIdOrName)) {
+        // 直接IDとして courseMaster から引く
         let courseData: CourseData | undefined = courseMaster[courseIdOrName];
-        let foundId = courseData ? courseIdOrName : undefined;
+        let foundId: string | undefined = courseData ? courseIdOrName : undefined;
 
-        if (!courseData) {
-          for (const [key, value] of Object.entries(courseMaster)) {
-            if (value.name === courseIdOrName) {
-              courseData = value;
-              foundId = key;
-              break;
-            }
-          }
+        // IDで見つからなければ、KdB名→英語名の順で逆引き
+        if (!foundId) {
+          foundId = findCourseIdByName(courseIdOrName, courseMaster, kdbDict);
+          if (foundId) courseData = courseMaster[foundId];
         }
 
-        const standardYear = courseData?.standardYear ?? 1;
+        // KdBから正確な標準履修年次を取得
+        const standardYear = foundId
+          ? getStandardYear(foundId, courseMaster, kdbDict)
+          : courseData?.standardYear ?? 1;
         const isUrgent = standardYear <= currentYear;
+
+        // 表示名はKdB日本語名を優先
+        const displayName = foundId
+          ? getDisplayName(foundId, courseMaster, kdbDict)
+          : courseIdOrName;
+        
+        // KdBから単位数もフォールバック
+        const credits = courseData?.credits ?? kdbDict[foundId ?? ""]?.credits ?? 0;
         
         cells.push({
           id: foundId ?? "",
-          name: courseData?.name ?? courseIdOrName,
-          credits: courseData?.credits ?? 0,
+          name: displayName,
+          credits,
           completed: false,
           standardYear,
           isUrgent,
@@ -183,6 +197,7 @@ export default function GraduationTableView({
   groupRequirements,
   curriculum,
   courseMaster,
+  kdbDict = {},
 }: GraduationTableViewProps) {
   // 全カテゴリを一覧化
   const columns: {
@@ -208,7 +223,7 @@ export default function GraduationTableView({
       }
       
       if (!cat) return;
-      const cells = buildCourseCells(req, cat, courseMaster, student.currentYear);
+      const cells = buildCourseCells(req, cat, courseMaster, student.currentYear, kdbDict);
       columns.push({ groupName: group.groupName, req, cat, cells });
     });
   });
