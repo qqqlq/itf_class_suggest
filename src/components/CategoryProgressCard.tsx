@@ -7,7 +7,7 @@ import ProgressBar from "./ProgressBar";
 interface CategoryProgressCardProps {
   group: GroupRequirementStatus;
   courseMaster: Record<string, CourseData>;
-  curriculumGroup: CurriculumGroup;
+  curriculumGroup?: CurriculumGroup;
 }
 
 function StatusIcon({ fulfilled }: { fulfilled: boolean }) {
@@ -76,7 +76,7 @@ export default function CategoryProgressCard({
               ? Math.round((req.earnedCredits / req.minCredits) * 100)
               : 100
           );
-          const curriculumCat = curriculumGroup.categories[idx];
+          const curriculumCat = curriculumGroup?.categories[idx];
           const hasDetails =
             req.matchedCourses.length > 0 || req.missingCourses.length > 0;
           const hasPrefixes =

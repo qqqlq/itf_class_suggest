@@ -184,9 +184,20 @@ export default function GraduationTableView({
   }[] = [];
 
   groupRequirements.forEach((group, gIdx) => {
+    // 最後の 'その他・未分類' グループなど、curriculumに存在しない場合はダミーで対応
     const curriculumGroup = curriculum.groups[gIdx];
+    
     group.categories.forEach((req, cIdx) => {
-      const cat = curriculumGroup?.categories[cIdx];
+      let cat = curriculumGroup?.categories[cIdx];
+      // 動的生成された未分類グループ用のダミーカテゴリ
+      if (!cat && group.groupName === "その他・未分類") {
+        cat = {
+          name: req.categoryName,
+          type: req.type,
+          minCredits: 0,
+        };
+      }
+      
       if (!cat) return;
       const cells = buildCourseCells(req, cat, courseMaster, student.currentYear);
       columns.push({ groupName: group.groupName, req, cat, cells });

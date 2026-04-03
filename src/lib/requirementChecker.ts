@@ -99,7 +99,7 @@ export function checkGroupRequirements(
   });
 
   // 4. グループごとの最終結果を構築
-  return curriculum.groups.map((group, gIdx) => {
+  const finalGroups = curriculum.groups.map((group, gIdx) => {
     const categories = group.categories.map((_, cIdx) => resultsByGroup[gIdx][cIdx]);
     const groupEarned = categories.reduce((sum, cat) => sum + cat.earnedCredits, 0);
 
@@ -112,6 +112,33 @@ export function checkGroupRequirements(
       categories,
     };
   });
+
+  // 5. 分類漏れの科目をまとめる (Unclassified / Unknown)
+  const unclassifiedMatched = Array.from(availableGrades);
+  if (unclassifiedMatched.length > 0) {
+    const unclassifiedEarned = unclassifiedMatched.reduce((sum, g) => sum + g.credits, 0);
+    finalGroups.push({
+      groupName: "その他・未分類",
+      earnedCredits: unclassifiedEarned,
+      minCredits: 0,
+      maxCredits: undefined,
+      fulfilled: true,
+      categories: [
+        {
+          categoryName: "マスタ未定義・要件外の科目",
+          type: "free",
+          earnedCredits: unclassifiedEarned,
+          minCredits: 0,
+          maxCredits: undefined,
+          fulfilled: true,
+          missingCourses: [],
+          matchedCourses: unclassifiedMatched,
+        }
+      ]
+    });
+  }
+
+  return finalGroups;
 }
 
 /** グループをフラットなカテゴリリストに展開（後方互換用） */
