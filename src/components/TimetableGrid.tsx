@@ -408,19 +408,26 @@ export default function TimetableGrid({ suggestions }: TimetableGridProps) {
             }}
           >
             <div style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--color-secondary)", marginBottom: "0.5rem" }}>
-              時間割グリッド外の提案（随時・集中講義など）
+              時間割グリッド外の提案（曜日・時限情報なし / 随時・集中講義など）
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem" }}>
               {unscheduled.map((s) => {
                 const ps = PRIORITY_STYLE[s.priority];
+                const moduleLabel = s.course.modules.length > 0
+                  ? s.course.modules.join(" / ")
+                  : "開講時期不明";
                 return (
                   <div
                     key={s.course.id}
                     style={{
-                      display: "flex",
+                      display: "grid",
+                      gridTemplateColumns: "auto 1fr auto auto",
                       alignItems: "center",
                       gap: "0.5rem",
                       fontSize: "0.75rem",
+                      padding: "0.35rem 0.5rem",
+                      borderRadius: "6px",
+                      background: "var(--color-surface)",
                     }}
                   >
                     <span
@@ -436,12 +443,17 @@ export default function TimetableGrid({ suggestions }: TimetableGridProps) {
                     >
                       {PRIORITY_LABELS[s.priority]}
                     </span>
-                    <span style={{ fontWeight: 600, color: "var(--color-primary)" }}>{s.course.name}</span>
-                    <span style={{ color: "var(--color-tertiary)", fontSize: "0.65rem", fontFamily: "monospace" }}>
-                      {s.course.id}
+                    <div>
+                      <span style={{ fontWeight: 600, color: "var(--color-primary)" }}>{s.course.name}</span>
+                      <span style={{ color: "var(--color-tertiary)", fontSize: "0.65rem", fontFamily: "monospace", marginLeft: "0.4rem" }}>
+                        {s.course.id}
+                      </span>
+                    </div>
+                    <span style={{ color: "var(--color-secondary)", fontSize: "0.7rem", whiteSpace: "nowrap" }}>
+                      {moduleLabel}
                     </span>
-                    <span style={{ color: "var(--color-secondary)", marginLeft: "auto" }}>
-                      {s.course.modules.join(" / ")}
+                    <span style={{ color: "var(--color-tertiary)", fontSize: "0.7rem", whiteSpace: "nowrap" }}>
+                      {s.course.credits}単位
                     </span>
                   </div>
                 );

@@ -258,7 +258,7 @@ function CategoryBlock({
                 >
                   {s.course.name}
                 </div>
-                <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.15rem", alignItems: "center" }}>
+                <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.15rem", alignItems: "center", flexWrap: "wrap" }}>
                   <span
                     style={{
                       fontSize: "0.65rem",
@@ -268,6 +268,11 @@ function CategoryBlock({
                   >
                     {s.course.id}
                   </span>
+                  {s.course.standardYear > 0 && (
+                    <span style={{ fontSize: "0.65rem", color: "var(--color-tertiary)" }}>
+                      {s.course.standardYear}年次配当
+                    </span>
+                  )}
                   {s.reason && (
                     <span style={{ fontSize: "0.65rem", color: "var(--color-secondary)" }}>
                       · {s.reason}
