@@ -4,10 +4,38 @@ import type {
   CourseData,
   SuggestedCourse,
 } from "@/types";
-import { checkRequirements } from "./requirementChecker";
+import { checkGroupRequirements, flattenRequirements } from "./requirementChecker";
 import { buildTimetableSlots, hasConflict } from "./timetableResolver";
 
 const MIN_ANNUAL_CREDITS = 40;
+
+/**
+ * 科目番号のプレフィックス優先度
+ * GC（情報メディア創成学類向け）を最優先とし、GA（情報学群共通）より上位にする
+ */
+function prefixPriority(courseId: string): number {
+  if (courseId.startsWith("GC")) return 0;
+  if (courseId.startsWith("GA")) return 1;
+  return 2;
+}
+
+/**
+ * 同名の科目が複数ある場合に GC 優先で1件に絞る
+ * GC がなければ GA を残す
+ */
+function deduplicateByName(
+  entries: [string, CourseData][]
+): [string, CourseData][] {
+  const seen = new Map<string, [string, CourseData]>();
+  for (const entry of entries) {
+    const [id, course] = entry;
+    const existing = seen.get(course.name);
+    if (!existing || prefixPriority(id) < prefixPriority(existing[0])) {
+      seen.set(course.name, entry);
+    }
+  }
+  return Array.from(seen.values());
+}
 
 export function suggestCourses(
   student: StudentData,
@@ -23,7 +51,8 @@ export function suggestCourses(
       .map((g) => g.courseId)
   );
 
-  const requirements = checkRequirements(student.grades, curriculum);
+  const groupRequirements = checkGroupRequirements(student.grades, curriculum);
+  const requirements = flattenRequirements(groupRequirements);
 
   function addSuggestion(
     courseId: string,
@@ -77,23 +106,28 @@ export function suggestCourses(
     .sort((a, b) => (b.minCredits - b.earnedCredits) - (a.minCredits - a.earnedCredits));
 
   for (const req of electiveReqs) {
-    const category = curriculum.categories.find((c) => c.name === req.categoryName);
+    const allCategories = curriculum.groups.flatMap((g) => g.categories);
+    const category = allCategories.find((c) => c.name === req.categoryName);
     if (!category) continue;
 
-    const candidates = Object.entries(courseMaster)
-      .filter(([id, course]) => {
-        if (passedCourseIds.has(id) || addedCourseIds.has(id)) return false;
-        if (course.standardYear > targetYear) return false;
-        // プレフィックスマッチ
-        if (category.prefixes) {
-          return category.prefixes.some((p) => id.startsWith(p));
-        }
-        if (category.courses) {
-          return category.courses.includes(id);
-        }
-        return false;
-      })
-      .sort(([, a], [, b]) => a.standardYear - b.standardYear);
+    const filtered = Object.entries(courseMaster).filter(([id, course]) => {
+      if (passedCourseIds.has(id) || addedCourseIds.has(id)) return false;
+      if (course.standardYear > targetYear) return false;
+      if (category.prefixes) {
+        return category.prefixes.some((p) => id.startsWith(p));
+      }
+      if (category.courses) {
+        return category.courses.includes(id);
+      }
+      return false;
+    });
+
+    // 同名科目が複数ある場合は GC 優先で絞り込み
+    const candidates = deduplicateByName(filtered).sort(
+      ([idA, a], [idB, b]) =>
+        a.standardYear - b.standardYear ||
+        prefixPriority(idA) - prefixPriority(idB)
+    );
 
     for (const [courseId] of candidates) {
       if (req.earnedCredits + sumSuggestedCredits(suggestions, req.categoryName) >= req.minCredits) {
@@ -106,12 +140,16 @@ export function suggestCourses(
   // Phase 4: 40単位以上確保
   const totalSuggested = suggestions.reduce((sum, s) => sum + s.course.credits, 0);
   if (totalSuggested < MIN_ANNUAL_CREDITS) {
-    const remaining = Object.entries(courseMaster)
-      .filter(([id, course]) => {
+    const remaining = deduplicateByName(
+      Object.entries(courseMaster).filter(([id, course]) => {
         if (passedCourseIds.has(id) || addedCourseIds.has(id)) return false;
         return course.standardYear === targetYear;
       })
-      .sort(([, a], [, b]) => b.credits - a.credits);
+    ).sort(
+      ([idA, a], [idB, b]) =>
+        b.credits - a.credits ||
+        prefixPriority(idA) - prefixPriority(idB)
+    );
 
     for (const [courseId] of remaining) {
       if (

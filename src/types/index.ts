@@ -36,12 +36,20 @@ export interface Curriculum {
   promotionRequirements: {
     year3to4: { minCredits: number };
   };
+  groups: CurriculumGroup[];
+}
+
+// 卒業要件グループ（専門科目, 専門基礎科目, 基礎科目（共通）, 基礎科目（関連））
+export interface CurriculumGroup {
+  name: string;
+  minCredits: number;
+  maxCredits?: number;
   categories: CurriculumCategory[];
 }
 
 export interface CurriculumCategory {
   name: string;
-  type: "required" | "elective";
+  type: "required" | "elective" | "free";
   minCredits: number;
   maxCredits?: number;
   courses?: string[]; // 科目番号リスト
@@ -67,16 +75,26 @@ export interface Course extends CourseData {
   id: string;
 }
 
-// 卒業要件の充足状況
+// 卒業要件の充足状況（カテゴリ単位）
 export interface RequirementStatus {
   categoryName: string;
-  type: "required" | "elective";
+  type: "required" | "elective" | "free";
   earnedCredits: number;
   minCredits: number;
   maxCredits?: number;
   fulfilled: boolean;
   missingCourses: string[]; // 未取得の必修科目ID
   matchedCourses: GradeRecord[]; // 取得済み科目
+}
+
+// 卒業要件の充足状況（グループ単位）
+export interface GroupRequirementStatus {
+  groupName: string;
+  earnedCredits: number;
+  minCredits: number;
+  maxCredits?: number;
+  fulfilled: boolean;
+  categories: RequirementStatus[];
 }
 
 // サジェスト結果

@@ -26,22 +26,37 @@ lines.push(`CAP開放時上限,${data.annualCreditCapExtended}`);
 lines.push(`進級条件(3→4年),${data.promotionRequirements.year3to4.minCredits}単位`);
 lines.push("");
 
+// グループ小計
+lines.push("# グループ小計");
+lines.push("グループ名,必要最低単位,上限単位");
+for (const group of data.groups) {
+  lines.push(
+    [group.name, group.minCredits, group.maxCredits ?? ""].join(",")
+  );
+}
+lines.push("");
+
 // カテゴリ
 lines.push("# 卒業要件カテゴリ");
-lines.push("カテゴリ名,種別(required/elective),必要最低単位,上限単位,科目番号リスト,プレフィックス,備考");
+lines.push(
+  "グループ名,カテゴリ名,種別(required/elective/free),必要最低単位,上限単位,科目番号リスト,プレフィックス,備考"
+);
 
-for (const cat of data.categories) {
-  lines.push(
-    [
-      `"${cat.name}"`,
-      cat.type,
-      cat.minCredits,
-      cat.maxCredits ?? "",
-      `"${(cat.courses ?? []).join("/")}"`,
-      `"${(cat.prefixes ?? []).join("/")}"`,
-      `"${cat.description ?? ""}"`,
-    ].join(",")
-  );
+for (const group of data.groups) {
+  for (const cat of group.categories) {
+    lines.push(
+      [
+        `"${group.name}"`,
+        `"${cat.name}"`,
+        cat.type,
+        cat.minCredits,
+        cat.maxCredits ?? "",
+        `"${(cat.courses ?? []).join("/")}"`,
+        `"${(cat.prefixes ?? []).join("/")}"`,
+        `"${cat.description ?? ""}"`,
+      ].join(",")
+    );
+  }
 }
 
 fs.writeFileSync(OUTPUT, lines.join("\n") + "\n", "utf-8");

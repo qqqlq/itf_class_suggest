@@ -1,4 +1,11 @@
-import type { Curriculum, CurriculumCategory, GradeRecord, RequirementStatus } from "@/types";
+import type {
+  Curriculum,
+  CurriculumCategory,
+  CurriculumGroup,
+  GradeRecord,
+  GroupRequirementStatus,
+  RequirementStatus,
+} from "@/types";
 
 function isPassing(grade: string): boolean {
   return grade !== "D" && grade !== "" && grade !== "-";
@@ -8,51 +15,80 @@ function matchesCourse(
   grade: GradeRecord,
   category: CurriculumCategory
 ): boolean {
-  // 科目番号の完全一致
   if (category.courses?.includes(grade.courseId)) {
     return true;
   }
-  // プレフィックスマッチ
   if (category.prefixes?.some((prefix) => grade.courseId.startsWith(prefix))) {
     return true;
   }
   return false;
 }
 
-export function checkRequirements(
+function checkCategory(
   grades: GradeRecord[],
-  curriculum: Curriculum
-): RequirementStatus[] {
-  return curriculum.categories.map((category) => {
-    const matchedCourses = grades.filter(
-      (g) => matchesCourse(g, category) && isPassing(g.totalGrade)
-    );
-    const earnedCredits = matchedCourses.reduce((sum, g) => sum + g.credits, 0);
+  category: CurriculumCategory
+): RequirementStatus {
+  const matchedCourses = grades.filter(
+    (g) => matchesCourse(g, category) && isPassing(g.totalGrade)
+  );
+  const earnedCredits = matchedCourses.reduce((sum, g) => sum + g.credits, 0);
 
-    // 未取得の必修科目を算出
-    const missingCourses: string[] = [];
-    if (category.courses) {
-      for (const courseId of category.courses) {
-        const found = grades.find(
-          (g) => g.courseId === courseId && isPassing(g.totalGrade)
-        );
-        if (!found) {
-          missingCourses.push(courseId);
-        }
+  const missingCourses: string[] = [];
+  if (category.courses) {
+    for (const courseId of category.courses) {
+      const found = grades.find(
+        (g) => g.courseId === courseId && isPassing(g.totalGrade)
+      );
+      if (!found) {
+        missingCourses.push(courseId);
       }
     }
+  }
 
-    return {
-      categoryName: category.name,
-      type: category.type,
-      earnedCredits,
-      minCredits: category.minCredits,
-      maxCredits: category.maxCredits,
-      fulfilled: earnedCredits >= category.minCredits,
-      missingCourses,
-      matchedCourses,
-    };
-  });
+  return {
+    categoryName: category.name,
+    type: category.type,
+    earnedCredits,
+    minCredits: category.minCredits,
+    maxCredits: category.maxCredits,
+    fulfilled: earnedCredits >= category.minCredits,
+    missingCourses,
+    matchedCourses,
+  };
+}
+
+function checkGroup(
+  grades: GradeRecord[],
+  group: CurriculumGroup
+): GroupRequirementStatus {
+  const categories = group.categories.map((cat) => checkCategory(grades, cat));
+  const earnedCredits = categories.reduce(
+    (sum, cat) => sum + cat.earnedCredits,
+    0
+  );
+
+  return {
+    groupName: group.name,
+    earnedCredits,
+    minCredits: group.minCredits,
+    maxCredits: group.maxCredits,
+    fulfilled: earnedCredits >= group.minCredits,
+    categories,
+  };
+}
+
+export function checkGroupRequirements(
+  grades: GradeRecord[],
+  curriculum: Curriculum
+): GroupRequirementStatus[] {
+  return curriculum.groups.map((group) => checkGroup(grades, group));
+}
+
+/** グループをフラットなカテゴリリストに展開（後方互換用） */
+export function flattenRequirements(
+  groupStatuses: GroupRequirementStatus[]
+): RequirementStatus[] {
+  return groupStatuses.flatMap((g) => g.categories);
 }
 
 export function getTotalEarnedCredits(grades: GradeRecord[]): number {

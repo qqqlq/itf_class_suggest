@@ -8,81 +8,147 @@
   "promotionRequirements": {
     "year3to4": { "minCredits": 100 }
   },
-  "categories": [
+  "groups": [
     {
-      "name": "専門科目（必修）",
-      "type": "required",
-      "minCredits": 10,
-      "courses": [
-        "GC27202",
-        "GC27302",
-        "GC27402"
+      "name": "専門科目",
+      "minCredits": 34,
+      "maxCredits": 49,
+      "categories": [
+        {
+          "name": "専門科目（必修）",
+          "type": "required",
+          "minCredits": 14,
+          "courses": [],
+          "description": "卒業研究A(3), 卒業研究B(3), 情報メディア実験A(3), 情報メディア実験B(3), 専門英語A(1), 専門英語B(1)。科目番号は要追加"
+        },
+        {
+          "name": "専門科目（選択）",
+          "type": "elective",
+          "minCredits": 20,
+          "maxCredits": 35,
+          "prefixes": ["GC5", "GA4"]
+        }
       ]
     },
     {
-      "name": "情報学群共通専門基礎科目",
-      "type": "required",
-      "minCredits": 14,
-      "courses": [
-        "GA12111",
-        "GA12201",
-        "GA12301",
-        "GA12401",
-        "GA13401",
-        "GA13501",
-        "GA14111",
-        "GA14201",
-        "GA14301",
-        "GA15131",
-        "GA15231",
-        "GA15331",
-        "GA18222",
-        "GA18322"
+      "name": "専門基礎科目",
+      "minCredits": 56,
+      "maxCredits": 71,
+      "categories": [
+        {
+          "name": "専門基礎科目（必修）",
+          "type": "required",
+          "minCredits": 25,
+          "courses": [
+            "GA15331",
+            "GA15231",
+            "GA18222",
+            "GA18322"
+          ],
+          "description": "微分積分A(2), 微分積分B(2), 線形代数A(2), 線形代数B(2), 情報数学A(2), 確率と統計(2), プログラミング入門A(2), プログラミング入門B(1), コンピュータリテラシー(1), プログラミング(2), コンピューターシステムとOS(2), データ構造とアルゴリズム(2), データ構造とアルゴリズム実習(1), データ工学概論(2)。一部科目番号は未登録"
+        },
+        {
+          "name": "専門基礎科目（選択）",
+          "type": "elective",
+          "minCredits": 31,
+          "maxCredits": 46,
+          "prefixes": ["GC2", "GA1"],
+          "description": "専門基礎科目・必修科目で指定した科目を除く"
+        }
       ]
     },
     {
-      "name": "専門基礎科目（選択）",
-      "type": "elective",
-      "minCredits": 32,
-      "maxCredits": 47,
-      "prefixes": ["GC2", "GA1"]
-    },
-    {
-      "name": "共通科目（必修）— ファーストイヤーセミナー",
-      "type": "required",
-      "minCredits": 1,
-      "courses": ["1119102"]
-    },
-    {
-      "name": "共通科目（必修）— 情報リテラシー",
-      "type": "required",
-      "minCredits": 3,
-      "courses": ["6125101", "6425102", "6525102"]
-    },
-    {
-      "name": "共通科目（必修）— 英語",
-      "type": "required",
-      "minCredits": 4,
-      "courses": ["31HC102", "31JC102", "31KC102", "31LC102"]
-    },
-    {
-      "name": "共通科目（必修）— 体育",
-      "type": "required",
-      "minCredits": 2,
-      "prefixes": ["210", "212"]
-    },
-    {
-      "name": "共通科目（選択）",
-      "type": "elective",
-      "minCredits": 4,
-      "prefixes": ["12", "37", "82", "FB"]
+      "name": "基礎科目（共通）",
+      "minCredits": 13,
+      "maxCredits": 22,
+      "categories": [
+        {
+          "name": "総合科目（必修）",
+          "type": "required",
+          "minCredits": 2,
+          "courses": [],
+          "description": "ファーストイヤーセミナー、学問への誘いを含む"
+        },
+        {
+          "name": "情報",
+          "type": "required",
+          "minCredits": 4,
+          "courses": [],
+          "description": "情報リテラシー等。科目番号は要追加"
+        },
+        {
+          "name": "体育（必修）",
+          "type": "required",
+          "minCredits": 2,
+          "courses": [],
+          "description": "体育。科目番号は要追加"
+        },
+        {
+          "name": "外国語（英語・必修）",
+          "type": "required",
+          "minCredits": 4,
+          "courses": [],
+          "description": "英語。科目番号は要追加"
+        },
+        {
+          "name": "総合科目（学士基盤科目）",
+          "type": "elective",
+          "minCredits": 1,
+          "maxCredits": 4,
+          "description": "学士基盤科目"
+        },
+        {
+          "name": "体育（選択）",
+          "type": "elective",
+          "minCredits": 0,
+          "maxCredits": 2
+        },
+        {
+          "name": "外国語（選択）",
+          "type": "elective",
+          "minCredits": 0,
+          "maxCredits": 6
+        },
+        {
+          "name": "国語",
+          "type": "elective",
+          "minCredits": 0,
+          "maxCredits": 2
+        },
+        {
+          "name": "芸術",
+          "type": "elective",
+          "minCredits": 0,
+          "maxCredits": 6
+        }
+      ]
     },
     {
       "name": "基礎科目（関連）",
-      "type": "elective",
       "minCredits": 6,
       "maxCredits": 15,
-      "description": "他学群開講科目"
+      "categories": [
+        {
+          "name": "他学群又は他学類の授業科目",
+          "type": "elective",
+          "minCredits": 6,
+          "maxCredits": 15,
+          "description": "GA, GB, GC, GE, 共通科目、及び教職に関する科目以外"
+        },
+        {
+          "name": "GB, GE科目",
+          "type": "elective",
+          "minCredits": 0,
+          "maxCredits": 9,
+          "prefixes": ["GB", "GE"]
+        },
+        {
+          "name": "博物館に関する科目・自由科目(特設)",
+          "type": "elective",
+          "minCredits": 0,
+          "maxCredits": 9
+        }
+      ]
     }
   ]
 }

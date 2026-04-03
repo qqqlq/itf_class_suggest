@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "履修計画サジェストツール",
+  title: "履修のすすめ @ITF_mast",
   description: "筑波大学 情報メディア創成学類向け履修計画サジェストツール",
 };
 

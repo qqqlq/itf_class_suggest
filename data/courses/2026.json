@@ -1,178 +1,495 @@
 {
-  "GC20201": {
-    "name": "線形代数B",
-    "credits": 2,
-    "standardYear": 2,
+  "GA12111": {
+    "name": "Introduction to Information Science:Artificial Intelligence",
+    "credits": 1,
+    "standardYear": 1,
     "modules": [
-      "春A",
-      "春B"
+      "春B",
+      "春C"
     ],
-    "dayPeriod": "月1",
+    "dayPeriod": "火2",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
-    "prerequisites": [
-      "GA15231"
-    ],
-    "instructor": ""
+    "prerequisites": [],
+    "instructor": "Yohei Akimoto,Yasuhiko Igarashi,Makoto Itoh,Hotaka Takizawa,Takeshi Yamada,Ikkyu Aihara,Yasunori Futamura,Shigeru Saito,Kazuto Fukuchi,Masayuki Miyamoto"
   },
-  "GC20301": {
-    "name": "メディア社会学",
+  "GA12201": {
+    "name": "Introduction to Information Science:Computation",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春C"
+    ],
+    "dayPeriod": "木5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Akira Imakura,Fumio Machida,Aranha, Claus,Hiroaki Shiokawa,Daisuke Takahashi,Koji Hasebe,Norihisa Fujita,Kazumasa Horie,Yasuhiro Takahashi,Yutaka Shikano"
+  },
+  "GA12301": {
+    "name": "Introduction to Information Science:Information Systems",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋B"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoshiki Yamaguchi,Shinichi Yamagiwa,Akira Sato,Takashi Nishide,Yoshihiro Oyama"
+  },
+  "GA12401": {
+    "name": "Introduction to Information Science",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春B"
+    ],
+    "dayPeriod": "金5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Yukiyoshi Kameyama,Xiucai Ye,里志 飯塚,Toshiyuki Amagasa,Noboru Kunihiro,Miwako TSUJI,Keiji Nagatani"
+  },
+  "GA13401": {
+    "name": "Introduction to Information Media",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春A"
+    ],
+    "dayPeriod": "金5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Shigetomo Kimura,Ikkaku Kawaguchi"
+  },
+  "GA13501": {
+    "name": "Introduction to Content Application",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Hanxiong Chen,Sangtae Kim,Yoichi Ochiai,Jingjing Li"
+  },
+  "GA14111": {
+    "name": "Introduction to Knowledge and Information Sciences",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春A"
+    ],
+    "dayPeriod": "火1",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Norihiko Uda"
+  },
+  "GA14121": {
+    "name": "Introduction to Knowledge and Information Sciences",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "月2",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Norihiko Uda"
+  },
+  "GA14201": {
+    "name": "Foundations of Knowledge Information Systems",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "木4",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Tetsuo Sakaguchi,Nobutaka Suzuki,Yohei Seki"
+  },
+  "GA14301": {
+    "name": "Introduction to Librarianship",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Yuko Yoshida"
+  },
+  "GA15111": {
+    "name": "Mathematics for Informatics A",
     "credits": 2,
     "standardYear": 1,
     "modules": [
       "春A",
       "春B"
     ],
-    "dayPeriod": "月2",
+    "dayPeriod": "木5",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Takashi Nishide,Yukiyoshi Kameyama"
   },
-  "GC21101": {
-    "name": "認知科学",
+  "GA15121": {
+    "name": "Mathematics for Informatics A",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
       "春A",
       "春B"
     ],
-    "dayPeriod": "火2",
+    "dayPeriod": "木5",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Koji Hasebe"
   },
-  "GC21201": {
-    "name": "コンピュータシステムとOS",
+  "GA15131": {
+    "name": "Mathematics for Informatics A",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
       "春A",
       "春B"
     ],
-    "dayPeriod": "火5",
+    "dayPeriod": "木5",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Kei Wakabayashi"
   },
-  "GC21301": {
-    "name": "メディア工学概論",
+  "GA15141": {
+    "name": "Mathematics for Informatics A",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
       "春A",
-      "春C"
+      "春B"
     ],
-    "dayPeriod": "月2",
+    "dayPeriod": "木5",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Hiroyoshi Ito"
   },
-  "GC22101": {
-    "name": "データ構造とアルゴリズム",
-    "credits": 3,
-    "standardYear": 2,
+  "GA15211": {
+    "name": "Linear Algebra A",
+    "credits": 2,
+    "standardYear": 1,
     "modules": [
-      "春A",
       "春B",
       "春C"
     ],
-    "dayPeriod": "火1",
+    "dayPeriod": "金3",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
-    "prerequisites": [
-      "GA18222"
-    ],
-    "instructor": ""
+    "prerequisites": [],
+    "instructor": "Osamu Tatebe,Keiichi Morikuni"
   },
-  "GC22201": {
-    "name": "データ構造とアルゴリズム実習",
-    "credits": 1.5,
-    "standardYear": 2,
+  "GA15221": {
+    "name": "Linear Algebra A",
+    "credits": 2,
+    "standardYear": 1,
     "modules": [
-      "春A",
       "春B",
       "春C"
     ],
-    "dayPeriod": "水1",
+    "dayPeriod": "金3",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
-    "prerequisites": [
-      "GA18222"
-    ],
-    "instructor": ""
+    "prerequisites": [],
+    "instructor": "Masayuki Miyamoto,里志 飯塚"
   },
-  "GC22301": {
-    "name": "情報数学B",
+  "GA15231": {
+    "name": "Linear Algebra A",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
-      "春A",
-      "春B"
+      "春B",
+      "春C"
     ],
-    "dayPeriod": "木3",
+    "dayPeriod": "金3",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
-    "prerequisites": [
-      "GA15131"
-    ],
-    "instructor": ""
+    "prerequisites": [],
+    "instructor": "Tohru Kawabe"
   },
-  "GC22401": {
-    "name": "情報理論",
+  "GA15241": {
+    "name": "Linear Algebra A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "SunKyoung Kim"
+  },
+  "GA15311": {
+    "name": "Calculus A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Satoya Imai,Kazumasa Horie"
+  },
+  "GA15321": {
+    "name": "Calculus A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Daisuke Takahashi,Hiroaki Shiokawa"
+  },
+  "GA15331": {
+    "name": "Calculus A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoshito Hirata"
+  },
+  "GA15341": {
+    "name": "Calculus A",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Makoto Kato"
+  },
+  "GA18212": {
+    "name": "Introduction to Programming A",
     "credits": 2,
     "standardYear": 2,
     "modules": [
       "秋A",
       "秋B"
     ],
-    "dayPeriod": "木3",
+    "dayPeriod": "木5",
     "category": "B",
     "prefixes": [
-      "GC2"
+      "GA1"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Yasushi Shinjo,Aranha, Claus,Savong Bou"
   },
-  "GC22501": {
-    "name": "コンピュータネットワーク",
+  "GA18222": {
+    "name": "Introduction to Programming A",
     "credits": 2,
     "standardYear": 2,
     "modules": [
       "秋A",
       "秋B"
     ],
-    "dayPeriod": "水4",
+    "dayPeriod": "木5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Buntarou Shizuki,Ikkaku Kawaguchi"
+  },
+  "GA18232": {
+    "name": "Introduction to Programming A",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Atsushi Matsumura,Maki Tokii"
+  },
+  "GA18312": {
+    "name": "Introduction to Programming B",
+    "credits": 1,
+    "standardYear": 2,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "木5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Yasushi Shinjo,Aranha, Claus,Savong Bou"
+  },
+  "GA18322": {
+    "name": "Introduction to Programming B",
+    "credits": 1,
+    "standardYear": 2,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "木5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Buntarou Shizuki,Ikkaku Kawaguchi"
+  },
+  "GA18332": {
+    "name": "Introduction to Programming B",
+    "credits": 1,
+    "standardYear": 2,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "木5",
+    "category": "B",
+    "prefixes": [
+      "GA1"
+    ],
+    "prerequisites": [],
+    "instructor": "Atsushi Matsumura,Maki Tokii"
+  },
+  "GC20101": {
+    "name": "Media Sociology",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春C"
+    ],
+    "dayPeriod": "月1",
     "category": "B",
     "prefixes": [
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Minako Terachi"
   },
-  "GC22601": {
-    "name": "微分積分B",
+  "GC21401": {
+    "name": "Statistical Analysis",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "水5",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Ko Sakai"
+  },
+  "GC21501": {
+    "name": "Mathematics for Informatics B",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "月3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Shuichi Moritsugu"
+  },
+  "GC21601": {
+    "name": "Mathematics for Informatics C",
+    "credits": 2,
+    "standardYear": 1,
     "modules": [
       "秋A",
       "秋B"
@@ -182,63 +499,77 @@
     "prefixes": [
       "GC2"
     ],
-    "prerequisites": [
-      "GA15331"
+    "prerequisites": [],
+    "instructor": "Makoto Fujisawa"
+  },
+  "GC22101": {
+    "name": "Web Programming",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
     ],
-    "instructor": ""
+    "dayPeriod": "木1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Mitsuharu Nagamori"
+  },
+  "GC22201": {
+    "name": "Programming Languages and Methodology",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "木1",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Buntarou Shizuki"
   },
   "GC23101": {
-    "name": "確率と統計",
+    "name": "Signals and Systems",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
       "秋A",
       "秋B"
     ],
-    "dayPeriod": "月1",
+    "dayPeriod": "水1",
     "category": "B",
     "prefixes": [
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Hiroko Terasawa"
   },
   "GC23201": {
-    "name": "信号システム",
+    "name": "Information Theory",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
-      "秋A",
-      "秋B"
+      "秋B",
+      "秋C"
     ],
-    "dayPeriod": "火1",
+    "dayPeriod": "木5",
     "category": "B",
     "prefixes": [
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Hiroyuki Kudo"
   },
-  "GC23301": {
-    "name": "統計分析法",
+  "GC23304": {
+    "name": "Computer Graphics",
     "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "秋A",
-      "秋B"
-    ],
-    "dayPeriod": "火5",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC23401": {
-    "name": "情報探索論",
-    "credits": 2,
-    "standardYear": 2,
+    "standardYear": 4,
     "modules": [
       "秋A",
       "秋B"
@@ -249,141 +580,47 @@
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Jun Mitani,Yoshihiro Kanamori,Yuki Endo"
   },
-  "GC24101": {
-    "name": "Webプログラミング",
+  "GC23401": {
+    "name": "Pattern Recognition",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
-      "秋C",
-      "春A"
+      "春A",
+      "春B"
     ],
-    "dayPeriod": "金1",
+    "dayPeriod": "月3",
     "category": "B",
     "prefixes": [
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Takashi Inui"
   },
-  "GC24201": {
-    "name": "情報理論",
+  "GC23501": {
+    "name": "Image and Video Information Processing",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
-      "秋C"
+      "秋A",
+      "秋B"
     ],
-    "dayPeriod": "月2",
+    "dayPeriod": "月5",
     "category": "B",
     "prefixes": [
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Hiroyuki Kudo,Makoto Fujisawa"
   },
-  "GC24301": {
-    "name": "人間計測の方法",
+  "GC23601": {
+    "name": "Fundamentals of Acoustics and Speech Communication",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
-      "秋C"
-    ],
-    "dayPeriod": "金3",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC24401": {
-    "name": "情報理論",
-    "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "秋C"
-    ],
-    "dayPeriod": "金5",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC20401": {
-    "name": "プログラミング",
-    "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "春B",
-      "春C"
-    ],
-    "dayPeriod": "水5",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [
-      "GA18222",
-      "GA18322"
-    ],
-    "instructor": ""
-  },
-  "GC20501": {
-    "name": "コンピュータリテラシー",
-    "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "春B",
-      "春C"
-    ],
-    "dayPeriod": "木2",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC20601": {
-    "name": "メディアコンテンツ開発",
-    "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "春B",
-      "春C"
-    ],
-    "dayPeriod": "水5",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC20701": {
-    "name": "コンテンツ応用論",
-    "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "春C"
-    ],
-    "dayPeriod": "水3",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC20801": {
-    "name": "情報デザイン",
-    "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "春C"
+      "春A",
+      "春B"
     ],
     "dayPeriod": "木3",
     "category": "B",
@@ -391,15 +628,59 @@
       "GC2"
     ],
     "prerequisites": [],
+    "instructor": "Hiroko Terasawa"
+  },
+  "GC24101": {
+    "name": "Information Design I",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "火3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Sangtae Kim"
+  },
+  "GC24401": {
+    "name": "Introduction to Content Technology",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [],
+    "dayPeriod": "",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
     "instructor": ""
   },
-  "GC21401": {
-    "name": "情報社会と法制度",
+  "GC24501": {
+    "name": "Introduction to Content Sharing",
     "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
-      "春A",
-      "春B"
+      "秋C"
+    ],
+    "dayPeriod": "火3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Mitsuharu Nagamori,tetsuya mihara"
+  },
+  "GC24601": {
+    "name": "Introduction to Media Content Technology",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
     ],
     "dayPeriod": "火5",
     "category": "B",
@@ -407,118 +688,106 @@
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Takefumi Hiraki"
   },
-  "GC21501": {
-    "name": "情報数学C",
+  "GC25301": {
+    "name": "Data Communications and Computer Networks",
     "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "秋A",
-      "秋B"
-    ],
-    "dayPeriod": "木2",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC21601": {
-    "name": "データ文学概論",
-    "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "春B",
-      "春C"
-    ],
-    "dayPeriod": "木1",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC27302": {
-    "name": "情報メディア特別演習II",
-    "credits": 2,
-    "standardYear": 2,
+    "standardYear": 1,
     "modules": [
       "春A",
-      "春B",
-      "春C",
-      "秋A",
-      "秋B",
-      "秋C"
+      "春B"
     ],
-    "dayPeriod": "水4",
-    "category": "B",
-    "prefixes": [
-      "GC2"
-    ],
-    "prerequisites": [
-      "GC27202"
-    ],
-    "instructor": ""
-  },
-  "GC20901": {
-    "name": "ACPC通年講義",
-    "credits": 2,
-    "standardYear": 2,
-    "modules": [
-      "秋A",
-      "秋B"
-    ],
-    "dayPeriod": "月5",
+    "dayPeriod": "木5",
     "category": "B",
     "prefixes": [
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Akira Sato,Sho Tsugawa"
+  },
+  "GC26101": {
+    "name": "Human Measurement Methods",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木4",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Hiromi Morita"
+  },
+  "GC26201": {
+    "name": "Cognitive Science",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月3",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Hiromi Morita,Nami Iino"
   },
   "GC27202": {
-    "name": "情報メディア特別演習I",
+    "name": "Special Project on Information Media I",
     "credits": 2,
-    "standardYear": 1,
+    "standardYear": 2,
     "modules": [
-      "春A",
-      "春B",
-      "春C",
-      "秋A",
-      "秋B",
-      "秋C"
+      "Annual"
     ],
-    "dayPeriod": "水4",
+    "dayPeriod": "by appointment",
     "category": "B",
     "prefixes": [
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Hiroyuki Kudo,Hiroko Terasawa"
   },
-  "GA15131": {
-    "name": "情報数学A",
+  "GC27302": {
+    "name": "Special Project on Information Media II",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "Annual"
+    ],
+    "dayPeriod": "by appointment",
+    "category": "B",
+    "prefixes": [
+      "GC2"
+    ],
+    "prerequisites": [],
+    "instructor": "Hiroyuki Kudo,Hiroko Terasawa"
+  },
+  "GC27701": {
+    "name": "ACPC joint lecture: topics on live contents",
     "credits": 2,
     "standardYear": 1,
     "modules": [
-      "春B",
-      "春C"
+      "春A",
+      "春B"
     ],
-    "dayPeriod": "月5",
+    "dayPeriod": "水5",
     "category": "B",
     "prefixes": [
-      "GA1"
+      "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Hiromi Morita"
   },
-  "GA15231": {
-    "name": "線形代数A",
+  "GC27992": {
+    "name": "Workshops on Hybrid Art",
     "credits": 2,
-    "standardYear": 1,
+    "standardYear": 2,
     "modules": [
       "秋A",
       "秋B"
@@ -526,211 +795,9 @@
     "dayPeriod": "金3",
     "category": "B",
     "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA15331": {
-    "name": "微分積分A",
-    "credits": 2,
-    "standardYear": 1,
-    "modules": [
-      "秋A",
-      "秋B"
-    ],
-    "dayPeriod": "金4",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA18222": {
-    "name": "プログラミング入門A",
-    "credits": 2,
-    "standardYear": 1,
-    "modules": [
-      "秋A",
-      "秋B"
-    ],
-    "dayPeriod": "金4",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA18322": {
-    "name": "プログラミング入門B",
-    "credits": 1,
-    "standardYear": 1,
-    "modules": [
-      "秋C"
-    ],
-    "dayPeriod": "金4",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [
-      "GA18222"
-    ],
-    "instructor": ""
-  },
-  "GA12111": {
-    "name": "知能と情報科学",
-    "credits": 1,
-    "standardYear": 1,
-    "modules": [
-      "春A"
-    ],
-    "dayPeriod": "月2",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA12201": {
-    "name": "計算と情報科学",
-    "credits": 1,
-    "standardYear": 1,
-    "modules": [
-      "春B"
-    ],
-    "dayPeriod": "月2",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA12301": {
-    "name": "システムと情報科学",
-    "credits": 1,
-    "standardYear": 1,
-    "modules": [
-      "春C"
-    ],
-    "dayPeriod": "月2",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA12401": {
-    "name": "情報科学概論",
-    "credits": 1,
-    "standardYear": 1,
-    "modules": [
-      "秋A"
-    ],
-    "dayPeriod": "火4",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA13401": {
-    "name": "情報メディア入門",
-    "credits": 1,
-    "standardYear": 1,
-    "modules": [
-      "秋A"
-    ],
-    "dayPeriod": "火5",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA13501": {
-    "name": "コンテンツ入門",
-    "credits": 2,
-    "standardYear": 1,
-    "modules": [
-      "秋A",
-      "秋B"
-    ],
-    "dayPeriod": "金5",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA14111": {
-    "name": "知識情報概論",
-    "credits": 1,
-    "standardYear": 1,
-    "modules": [
-      "秋B"
-    ],
-    "dayPeriod": "火5",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA14201": {
-    "name": "知識情報システム概説",
-    "credits": 1,
-    "standardYear": 1,
-    "modules": [
-      "秋C"
-    ],
-    "dayPeriod": "火4",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GA14301": {
-    "name": "図書館概論",
-    "credits": 2,
-    "standardYear": 1,
-    "modules": [
-      "春A",
-      "春B"
-    ],
-    "dayPeriod": "水3",
-    "category": "B",
-    "prefixes": [
-      "GA1"
-    ],
-    "prerequisites": [],
-    "instructor": ""
-  },
-  "GC20101": {
-    "name": "メディア社会学",
-    "credits": 2,
-    "standardYear": 1,
-    "modules": [
-      "春A",
-      "春B"
-    ],
-    "dayPeriod": "月2",
-    "category": "B",
-    "prefixes": [
       "GC2"
     ],
     "prerequisites": [],
-    "instructor": ""
+    "instructor": "Fumiaki Murakami"
   }
 }
