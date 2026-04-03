@@ -54,6 +54,9 @@ export interface CurriculumCategory {
   maxCredits?: number;
   courses?: string[]; // 科目番号リスト
   prefixes?: string[]; // 科目番号プレフィックス
+  courseNames?: string[]; // 科目名リスト
+  namePrefixes?: string[]; // 科目名プレフィックス
+  excludePrefixes?: string[]; // 除外する科目番号プレフィックス
   description?: string;
 }
 

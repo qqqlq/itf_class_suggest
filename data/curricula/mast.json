@@ -18,8 +18,14 @@
           "name": "専門科目（必修）",
           "type": "required",
           "minCredits": 14,
-          "courses": [],
-          "description": "卒業研究A(3), 卒業研究B(3), 情報メディア実験A(3), 情報メディア実験B(3), 専門英語A(1), 専門英語B(1)。科目番号は要追加"
+          "courseNames": [
+            "卒業研究A",
+            "卒業研究B",
+            "情報メディア実験A",
+            "情報メディア実験B",
+            "専門英語A",
+            "専門英語B"
+          ]
         },
         {
           "name": "専門科目（選択）",
@@ -39,21 +45,29 @@
           "name": "専門基礎科目（必修）",
           "type": "required",
           "minCredits": 25,
-          "courses": [
-            "GA15331",
-            "GA15231",
-            "GA18222",
-            "GA18322"
-          ],
-          "description": "微分積分A(2), 微分積分B(2), 線形代数A(2), 線形代数B(2), 情報数学A(2), 確率と統計(2), プログラミング入門A(2), プログラミング入門B(1), コンピュータリテラシー(1), プログラミング(2), コンピューターシステムとOS(2), データ構造とアルゴリズム(2), データ構造とアルゴリズム実習(1), データ工学概論(2)。一部科目番号は未登録"
+          "courseNames": [
+            "微分積分A",
+            "微分積分B",
+            "線形代数A",
+            "線形代数B",
+            "情報数学A",
+            "確率と統計",
+            "プログラミング入門A",
+            "プログラミング入門B",
+            "コンピュータリテラシー",
+            "プログラミング",
+            "コンピューターシステムとOS",
+            "データ構造とアルゴリズム",
+            "データ構造とアルゴリズム実習",
+            "データ工学概論"
+          ]
         },
         {
           "name": "専門基礎科目（選択）",
           "type": "elective",
           "minCredits": 31,
           "maxCredits": 46,
-          "prefixes": ["GC2", "GA1"],
-          "description": "専門基礎科目・必修科目で指定した科目を除く"
+          "prefixes": ["GC2", "GA1"]
         }
       ]
     },
@@ -66,42 +80,43 @@
           "name": "総合科目（必修）",
           "type": "required",
           "minCredits": 2,
-          "courses": [],
-          "description": "ファーストイヤーセミナー、学問への誘いを含む"
+          "courseNames": ["ファーストイヤーセミナー", "学問への誘い"]
         },
         {
-          "name": "情報",
+          "name": "情報（必修）",
           "type": "required",
           "minCredits": 4,
-          "courses": [],
-          "description": "情報リテラシー等。科目番号は要追加"
+          "courseNames": ["情報リテラシー(講義)", "情報リテラシー(演習)", "データサイエンス"]
         },
         {
           "name": "体育（必修）",
           "type": "required",
           "minCredits": 2,
-          "courses": [],
-          "description": "体育。科目番号は要追加"
+          "namePrefixes": ["基礎体育"]
         },
         {
           "name": "外国語（英語・必修）",
           "type": "required",
           "minCredits": 4,
-          "courses": [],
-          "description": "英語。科目番号は要追加"
+          "courseNames": [
+            "English Reading Skills I",
+            "English Reading Skills II",
+            "English Presentation Skills I",
+            "English Presentation Skills II"
+          ]
         },
         {
           "name": "総合科目（学士基盤科目）",
           "type": "elective",
           "minCredits": 1,
-          "maxCredits": 4,
-          "description": "学士基盤科目"
+          "maxCredits": 4
         },
         {
           "name": "体育（選択）",
           "type": "elective",
           "minCredits": 0,
-          "maxCredits": 2
+          "maxCredits": 2,
+          "namePrefixes": ["応用体育"]
         },
         {
           "name": "外国語（選択）",
@@ -133,7 +148,7 @@
           "type": "elective",
           "minCredits": 6,
           "maxCredits": 15,
-          "description": "GA, GB, GC, GE, 共通科目、及び教職に関する科目以外"
+          "excludePrefixes": ["GA", "GB", "GC", "GE"]
         },
         {
           "name": "GB, GE科目",

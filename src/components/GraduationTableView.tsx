@@ -4,9 +4,11 @@ import type {
   CourseData,
   RequirementStatus,
   CurriculumCategory,
+  StudentData,
 } from "@/types";
 
 interface GraduationTableViewProps {
+  student: StudentData;
   groupRequirements: GroupRequirementStatus[];
   curriculum: Curriculum;
   courseMaster: Record<string, CourseData>;
@@ -18,12 +20,15 @@ interface CourseCell {
   credits: number;
   completed: boolean;
   score?: string; // e.g. A+, A, B, C, P
+  standardYear?: number;
+  isUrgent?: boolean;
 }
 
 function buildCourseCells(
   req: RequirementStatus,
   cat: CurriculumCategory,
-  courseMaster: Record<string, CourseData>
+  courseMaster: Record<string, CourseData>,
+  currentYear: number
 ): CourseCell[] {
   const cells: CourseCell[] = [];
   const completedIds = new Set(req.matchedCourses.map((g) => g.courseId));
@@ -41,16 +46,45 @@ function buildCourseCells(
 
   // 必修科目の未取得分
   if (cat.type === "required" && req.missingCourses.length > 0) {
-    req.missingCourses.forEach((courseId) => {
-      if (!completedIds.has(courseId)) {
-        const course = courseMaster[courseId];
+    req.missingCourses.forEach((courseIdOrName) => {
+      if (!completedIds.has(courseIdOrName)) {
+        let courseData: CourseData | undefined = courseMaster[courseIdOrName];
+        let foundId = courseData ? courseIdOrName : undefined;
+
+        if (!courseData) {
+          for (const [key, value] of Object.entries(courseMaster)) {
+            if (value.name === courseIdOrName) {
+              courseData = value;
+              foundId = key;
+              break;
+            }
+          }
+        }
+
+        const standardYear = courseData?.standardYear ?? 1;
+        const isUrgent = standardYear <= currentYear;
+        
         cells.push({
-          id: courseId,
-          name: course?.name ?? courseId,
-          credits: course?.credits ?? 0,
+          id: foundId ?? "",
+          name: courseData?.name ?? courseIdOrName,
+          credits: courseData?.credits ?? 0,
           completed: false,
+          standardYear,
+          isUrgent,
         });
       }
+    });
+  }
+
+  // 選択科目等の未取得分（不足単位数の可視化）
+  if (cat.minCredits > 0 && req.earnedCredits < cat.minCredits && cat.type !== "required") {
+    const missingCredits = cat.minCredits - req.earnedCredits;
+    cells.push({
+      id: `missing-elective`,
+      name: `(他の科目で補填が必要)`,
+      credits: missingCredits,
+      completed: false,
+      isUrgent: false,
     });
   }
 
@@ -89,8 +123,15 @@ function Column({ groupName, req, cat, cells }: ColumnProps) {
             className={`course-cell ${cell.completed ? 'course-cell-acquired' : 'course-cell-unacquired'}`}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-               <div className={`text-sm font-semibold ${cell.completed ? "text-success" : "text-secondary"}`}>
-                 {cell.name}
+               <div style={{ display: 'flex', flexDirection: 'column' }}>
+                 <div className={`text-sm font-semibold ${cell.completed ? "text-success" : (cell.isUrgent ? "text-danger" : "text-secondary")}`}>
+                   {cell.name}
+                 </div>
+                 {!cell.completed && cell.isUrgent && (
+                   <span style={{ fontSize: '0.65rem', padding: '0.125rem 0.25rem', background: 'var(--color-danger)', color: '#fff', borderRadius: '4px', alignSelf: 'flex-start', marginTop: '0.25rem' }}>
+                     {cell.standardYear}年次配当・要履修
+                   </span>
+                 )}
                </div>
                {cell.completed && cell.score && (
                  <span style={{ fontSize: '0.75rem', fontWeight: 600, padding: '0.125rem 0.375rem', borderRadius: '4px', background: 'rgba(255,255,255,0.7)', color: 'var(--color-success)', border: '1px solid var(--color-success-border)' }}>
@@ -129,6 +170,7 @@ function Column({ groupName, req, cat, cells }: ColumnProps) {
 }
 
 export default function GraduationTableView({
+  student,
   groupRequirements,
   curriculum,
   courseMaster,
@@ -146,7 +188,7 @@ export default function GraduationTableView({
     group.categories.forEach((req, cIdx) => {
       const cat = curriculumGroup?.categories[cIdx];
       if (!cat) return;
-      const cells = buildCourseCells(req, cat, courseMaster);
+      const cells = buildCourseCells(req, cat, courseMaster, student.currentYear);
       columns.push({ groupName: group.groupName, req, cat, cells });
     });
   });
@@ -187,7 +229,7 @@ export default function GraduationTableView({
 
       <p className="text-xs text-tertiary" style={{ padding: '0 0.5rem' }}>
         ※ 緑のセルは取得済み科目、グループの背景を白にし見やすく設定しました。<br/>
-        ※ 未取得はグレーの枠のみ。尚、選択科目欄は取得済みのみ表示しています。
+        ※ 未取得はグレーの枠のみ。赤いバッジは現在（またはそれ以前）の学年が標準履修年次となっている未修得の必修科目です。
       </p>
     </div>
   );

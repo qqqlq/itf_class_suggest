@@ -100,6 +100,7 @@ export default function Home() {
 
               {activeTab === "table" && (
                 <GraduationTableView
+                  student={student}
                   groupRequirements={groupRequirements}
                   curriculum={curriculum}
                   courseMaster={courseMaster}
@@ -110,7 +111,7 @@ export default function Home() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                   {suggestions.length > 0 ? (
                     <>
-                      <CourseSuggestion suggestions={suggestions} />
+                      <CourseSuggestion suggestions={suggestions} currentYear={student.currentYear} />
                       <div style={{ paddingTop: '1.5rem', borderTop: '1px solid var(--color-border)' }}>
                         <TimetableGrid suggestions={suggestions} />
                       </div>

@@ -4,6 +4,7 @@ import type { SuggestedCourse } from "@/types";
 
 interface CourseSuggestionProps {
   suggestions: SuggestedCourse[];
+  currentYear: number;
 }
 
 const PRIORITY_LABELS: Record<SuggestedCourse["priority"], string> = {
@@ -20,25 +21,28 @@ const PRIORITY_BADGE: Record<SuggestedCourse["priority"], string> = {
   low: "bg-slate-100 text-slate-500 border-slate-200",
 };
 
-export default function CourseSuggestion({ suggestions }: CourseSuggestionProps) {
+export default function CourseSuggestion({ suggestions, currentYear }: CourseSuggestionProps) {
   const totalCredits = suggestions.reduce((sum, s) => sum + s.course.credits, 0);
   const creditStatus =
     totalCredits > 45
-      ? { color: "text-red-600", note: "⚠ 上限超過" }
+      ? { color: "var(--color-danger)", note: "⚠ 上限超過" }
       : totalCredits >= 40
-      ? { color: "text-emerald-600", note: "" }
-      : { color: "text-amber-600", note: "⚠ 40単位未満" };
+      ? { color: "var(--color-success)", note: "" }
+      : { color: "var(--color-warning)", note: "⚠ 40単位未満" };
 
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {/* 概要バー */}
-      <div className="flex items-center justify-between">
-        <h3 className="text-base font-semibold text-slate-800">サジェスト科目一覧</h3>
-        <div className="flex items-center gap-2 text-sm">
-          <span className="text-slate-500">提案合計:</span>
-          <span className={`font-bold ${creditStatus.color}`}>{totalCredits} 単位</span>
+      <div style={{ display: 'flex', alignItems: 'center', justifyItems: 'space-between' }}>
+        <h3 className="font-semibold text-primary" style={{ flex: 1, fontSize: '1.125rem' }}>
+          {currentYear}年次向けの履修提案
+          <span className="text-tertiary" style={{ fontSize: '0.75rem', marginLeft: '1rem', fontWeight: 'normal' }}>※ 該当学年に配当されている未修得科目を優先しています</span>
+        </h3>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}>
+          <span className="text-secondary">提案合計:</span>
+          <span style={{ fontWeight: 'bold', color: creditStatus.color }}>{totalCredits} 単位</span>
           {creditStatus.note && (
-            <span className={`text-xs font-medium ${creditStatus.color}`}>
+            <span style={{ fontSize: '0.75rem', fontWeight: 500, color: creditStatus.color }}>
               {creditStatus.note}
             </span>
           )}
