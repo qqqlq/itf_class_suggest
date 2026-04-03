@@ -35,12 +35,16 @@ function buildCourseCells(
 
   // 取得済み科目（必ず表示）
   req.matchedCourses.forEach((grade) => {
+    const courseData = courseMaster[grade.courseId];
+    const standardYear = grade.standardYear ? parseInt(grade.standardYear, 10) : courseData?.standardYear;
+    
     cells.push({
       id: grade.courseId,
       name: grade.courseName,
       credits: grade.credits,
       completed: true,
       score: grade.totalGrade,
+      standardYear,
     });
   });
 
@@ -130,6 +134,11 @@ function Column({ groupName, req, cat, cells }: ColumnProps) {
                  {!cell.completed && cell.isUrgent && (
                    <span style={{ fontSize: '0.65rem', padding: '0.125rem 0.25rem', background: 'var(--color-danger)', color: '#fff', borderRadius: '4px', alignSelf: 'flex-start', marginTop: '0.25rem' }}>
                      {cell.standardYear}年次配当・要履修
+                   </span>
+                 )}
+                 {cell.completed && cell.standardYear && (
+                   <span className="text-secondary" style={{ fontSize: '0.65rem', marginTop: '0.125rem' }}>
+                     (履修年次: {cell.standardYear}年)
                    </span>
                  )}
                </div>

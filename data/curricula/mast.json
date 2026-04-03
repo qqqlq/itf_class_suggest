@@ -109,7 +109,8 @@
           "name": "総合科目（学士基盤科目）",
           "type": "elective",
           "minCredits": 1,
-          "maxCredits": 4
+          "maxCredits": 4,
+          "prefixes": ["11", "12", "14", "1A", "1B", "1N"]
         },
         {
           "name": "体育（選択）",
@@ -122,7 +123,8 @@
           "name": "外国語（選択）",
           "type": "elective",
           "minCredits": 0,
-          "maxCredits": 6
+          "maxCredits": 6,
+          "prefixes": ["31", "32", "33", "34", "35", "36", "37"]
         },
         {
           "name": "国語",
@@ -161,7 +163,8 @@
           "name": "博物館に関する科目・自由科目(特設)",
           "type": "elective",
           "minCredits": 0,
-          "maxCredits": 9
+          "maxCredits": 9,
+          "prefixes": ["82", "Y", "F"]
         }
       ]
     }

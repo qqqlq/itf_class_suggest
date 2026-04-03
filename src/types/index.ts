@@ -11,6 +11,8 @@ export interface GradeRecord {
   category: string; // B, C, C0
   year: number;
   offering: string;
+  standardYear?: string; // from KdB
+  kdbCategory?: string;  // from KdB
 }
 
 // パース済みの学生データ

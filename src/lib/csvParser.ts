@@ -13,7 +13,10 @@ function isPassing(grade: string): boolean {
   return grade === "A+" || grade === "A" || grade === "B" || grade === "C" || grade === "P";
 }
 
-export function parseTwinsCSV(csvText: string): StudentData {
+export function parseTwinsCSV(
+  csvText: string,
+  kdbDict?: Record<string, { standardYear?: string; kdbCategory?: string }>
+): StudentData {
   const result = Papa.parse(csvText, {
     header: false,
     skipEmptyLines: true,
@@ -25,19 +28,26 @@ export function parseTwinsCSV(csvText: string): StudentData {
 
   const grades: GradeRecord[] = dataRows
     .filter((row) => row.length >= 11 && row[0].trim())
-    .map((row) => ({
-      studentId: row[0].trim().replace(/"/g, ""),
-      studentName: row[1].trim().replace(/"/g, ""),
-      courseId: row[2].trim().replace(/"/g, ""),
-      courseName: row[3].trim().replace(/"/g, ""),
-      credits: parseFloat(row[4].trim().replace(/"/g, "")),
-      springGrade: row[5].trim().replace(/"/g, ""),
-      autumnGrade: row[6].trim().replace(/"/g, ""),
-      totalGrade: row[7].trim().replace(/"/g, ""),
-      category: row[8].trim().replace(/"/g, ""),
-      year: parseInt(row[9].trim().replace(/"/g, ""), 10),
-      offering: row[10].trim().replace(/"/g, ""),
-    }));
+    .map((row) => {
+      const courseId = row[2].trim().replace(/"/g, "");
+      const kdbInfo = kdbDict ? kdbDict[courseId] : undefined;
+      
+      return {
+        studentId: row[0].trim().replace(/"/g, ""),
+        studentName: row[1].trim().replace(/"/g, ""),
+        courseId,
+        courseName: row[3].trim().replace(/"/g, ""),
+        credits: parseFloat(row[4].trim().replace(/"/g, "")),
+        springGrade: row[5].trim().replace(/"/g, ""),
+        autumnGrade: row[6].trim().replace(/"/g, ""),
+        totalGrade: row[7].trim().replace(/"/g, ""),
+        category: row[8].trim().replace(/"/g, ""),
+        year: parseInt(row[9].trim().replace(/"/g, ""), 10),
+        offering: row[10].trim().replace(/"/g, ""),
+        standardYear: kdbInfo?.standardYear,
+        kdbCategory: kdbInfo?.kdbCategory,
+      };
+    });
 
   if (grades.length === 0) {
     throw new Error("CSVにデータが含まれていません");

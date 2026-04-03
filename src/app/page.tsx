@@ -21,6 +21,7 @@ import TabNavigation, { type TabId } from "@/components/TabNavigation";
 
 import curriculumData from "../../data/curricula/mast.json";
 import courseMasterData from "../../data/courses/2026.json";
+import kdbDictData from "../../data/courses/kdb_dict.json";
 
 export default function Home() {
   const [student, setStudent] = useState<StudentData | null>(null);
@@ -31,11 +32,13 @@ export default function Home() {
 
   const curriculum = curriculumData as Curriculum;
   const courseMaster = courseMasterData as Record<string, CourseData>;
+  // Explicitly cast to avoid TS indexing issues
+  const kdbDict = kdbDictData as Record<string, { standardYear?: string; kdbCategory?: string }>;
 
   const handleCsvUpload = (csvText: string) => {
     try {
       setError(null);
-      const parsed = parseTwinsCSV(csvText);
+      const parsed = parseTwinsCSV(csvText, kdbDict);
       setStudent(parsed);
 
       const reqs = checkGroupRequirements(parsed.grades, curriculum);
