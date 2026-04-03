@@ -117,7 +117,7 @@ export default function Home() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                   {suggestions.length > 0 ? (
                     <>
-                      <CourseSuggestion suggestions={suggestions} currentYear={student.currentYear} />
+                      <CourseSuggestion suggestions={suggestions} currentYear={student.currentYear} groupRequirements={groupRequirements} />
                       <div style={{ paddingTop: '1.5rem', borderTop: '1px solid var(--color-border)' }}>
                         <TimetableGrid suggestions={suggestions} />
                       </div>
