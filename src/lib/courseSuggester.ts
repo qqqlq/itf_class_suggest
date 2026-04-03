@@ -7,7 +7,7 @@ import type {
 } from "@/types";
 import { checkGroupRequirements, flattenRequirements } from "./requirementChecker";
 import { buildTimetableSlots, hasConflict } from "./timetableResolver";
-import { getStandardYear, getDisplayName } from "./kdbEnricher";
+import { getStandardYear, getDisplayName, findCourseIdByName } from "./kdbEnricher";
 
 const MIN_ANNUAL_CREDITS = 40;
 
@@ -103,7 +103,14 @@ export function suggestCourses(
   // Phase 1: 取り逃がした必修科目（標準年次が currentYear 以下）を最優先
   for (const req of requirements) {
     if (req.type !== "required") continue;
-    for (const courseId of req.missingCourses) {
+    for (const missingItem of req.missingCourses) {
+      // missingCourses は courseId の場合も courseName の場合もある
+      // （courseNames で定義されたカテゴリでは名前が入る）
+      const courseId = courseMaster[missingItem]
+        ? missingItem
+        : (findCourseIdByName(missingItem, courseMaster, kdbDict) ?? null);
+      if (!courseId) continue;
+
       const stdYear = getStandardYear(courseId, courseMaster, kdbDict);
       if (stdYear <= targetYear) {
         const isOverdue = stdYear < targetYear;
