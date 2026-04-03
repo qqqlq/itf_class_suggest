@@ -23,17 +23,20 @@ function prefixPriority(courseId: string): number {
 
 /**
  * 同名の科目が複数ある場合に GC 優先で1件に絞る
- * GC がなければ GA を残す
+ * KdBの日本語名を優先し、同名なら GC > GA の優先度で選ぶ
  */
 function deduplicateByName(
-  entries: [string, CourseData][]
+  entries: [string, CourseData][],
+  kdbDict: Record<string, KdbEntry> = {}
 ): [string, CourseData][] {
   const seen = new Map<string, [string, CourseData]>();
   for (const entry of entries) {
     const [id, course] = entry;
-    const existing = seen.get(course.name);
+    // KdB日本語名を優先。なければ英語名（course.name）をキーに使う
+    const key = kdbDict[id]?.name ?? course.name;
+    const existing = seen.get(key);
     if (!existing || prefixPriority(id) < prefixPriority(existing[0])) {
-      seen.set(course.name, entry);
+      seen.set(key, entry);
     }
   }
   return Array.from(seen.values());
@@ -54,6 +57,18 @@ export function suggestCourses(
       .map((g) => g.courseId)
   );
 
+  // 取得済み科目の「日本語表示名」セットを構築
+  // → 同一科目の別クラス（GA15131 vs GA15111）を取得済み扱いにする
+  const passedCourseNames = new Set<string>();
+  for (const grade of student.grades) {
+    if (grade.totalGrade === "D" || grade.totalGrade === "") continue;
+    // KdB名 → 科目名 → courseId の順で日本語名を取得
+    const displayName = getDisplayName(grade.courseId, courseMaster, kdbDict);
+    passedCourseNames.add(displayName);
+    // CSVの科目名（日本語）もセットに追加
+    passedCourseNames.add(grade.courseName);
+  }
+
   const groupRequirements = checkGroupRequirements(student.grades, curriculum);
   const requirements = flattenRequirements(groupRequirements);
 
@@ -64,6 +79,11 @@ export function suggestCourses(
     categoryName: string
   ) {
     if (addedCourseIds.has(courseId) || passedCourseIds.has(courseId)) return;
+
+    // KdBの日本語名で取得済みか確認（別クラス番号の同名科目を除外）
+    const displayName = getDisplayName(courseId, courseMaster, kdbDict);
+    if (passedCourseNames.has(displayName)) return;
+
     const course = courseMaster[courseId];
     if (!course) return;
 
@@ -72,8 +92,6 @@ export function suggestCourses(
     if (hasConflict(course, currentSlots)) return;
 
     addedCourseIds.add(courseId);
-    // KdBから日本語名・年次を補完
-    const displayName = getDisplayName(courseId, courseMaster, kdbDict);
     suggestions.push({
       course: { ...course, id: courseId, name: displayName },
       priority,
@@ -134,8 +152,8 @@ export function suggestCourses(
       return false;
     });
 
-    // 同名科目が複数ある場合は GC 優先で絞り込み
-    const candidates = deduplicateByName(filtered).sort(
+    // 同名科目が複数ある場合は GC 優先で絞り込み（KdB日本語名ベース）
+    const candidates = deduplicateByName(filtered, kdbDict).sort(
       ([idA, a], [idB, b]) => {
         const ya = getStandardYear(idA, courseMaster, kdbDict);
         const yb = getStandardYear(idB, courseMaster, kdbDict);
@@ -157,9 +175,12 @@ export function suggestCourses(
     const remaining = deduplicateByName(
       Object.entries(courseMaster).filter(([id]) => {
         if (passedCourseIds.has(id) || addedCourseIds.has(id)) return false;
+        const displayName = getDisplayName(id, courseMaster, kdbDict);
+        if (passedCourseNames.has(displayName)) return false;
         const stdYear = getStandardYear(id, courseMaster, kdbDict);
         return stdYear === targetYear;
-      })
+      }),
+      kdbDict
     ).sort(
       ([idA, a], [idB, b]) =>
         b.credits - a.credits ||
