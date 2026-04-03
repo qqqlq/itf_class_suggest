@@ -16,36 +16,34 @@ export default function StudentInfoBar({
   );
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm px-5 py-4">
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-        <div>
-          <div className="text-xs text-slate-400 mb-0.5">氏名</div>
-          <div className="font-semibold text-slate-900 text-sm">{student.studentName}</div>
+    <div className="bento-card flex" style={{ flexWrap: 'wrap', alignItems: 'center', gap: '1.5rem' }}>
+      <div>
+        <div className="text-xs text-tertiary mb-2">氏名</div>
+        <div className="font-semibold text-primary">{student.studentName}</div>
+      </div>
+      <div style={{ height: '2rem', width: '1px', backgroundColor: 'var(--color-border)' }} />
+      <div>
+        <div className="text-xs text-tertiary mb-2">年次</div>
+        <div className="font-semibold text-primary">{student.currentYear}年次</div>
+      </div>
+      <div style={{ height: '2rem', width: '1px', backgroundColor: 'var(--color-border)' }} />
+      <div>
+        <div className="text-xs text-tertiary mb-2">GPA</div>
+        <div className="font-semibold text-primary">{student.gpa.toFixed(2)}</div>
+      </div>
+      <div style={{ height: '2rem', width: '1px', backgroundColor: 'var(--color-border)' }} />
+      <div style={{ flex: 1, minWidth: '180px' }}>
+        <div className="flex justify-between text-xs text-secondary mb-2">
+          <span>取得単位数</span>
+          <span className="font-medium text-primary">
+            {student.earnedCredits} / {totalRequired} ({percent}%)
+          </span>
         </div>
-        <div className="h-8 w-px bg-slate-200 hidden sm:block" />
-        <div>
-          <div className="text-xs text-slate-400 mb-0.5">年次</div>
-          <div className="font-semibold text-slate-900 text-sm">{student.currentYear}年次</div>
-        </div>
-        <div className="h-8 w-px bg-slate-200 hidden sm:block" />
-        <div>
-          <div className="text-xs text-slate-400 mb-0.5">GPA</div>
-          <div className="font-semibold text-slate-900 text-sm">{student.gpa.toFixed(2)}</div>
-        </div>
-        <div className="h-8 w-px bg-slate-200 hidden sm:block" />
-        <div className="flex-1 min-w-[180px]">
-          <div className="flex justify-between text-xs text-slate-400 mb-1">
-            <span>取得単位数</span>
-            <span className="font-medium text-slate-600">
-              {student.earnedCredits} / {totalRequired} ({percent}%)
-            </span>
-          </div>
-          <ProgressBar
-            percent={percent}
-            color="bg-gradient-to-r from-blue-500 to-blue-600"
-            size="md"
-          />
-        </div>
+        <ProgressBar
+          percent={percent}
+          color="linear-gradient(to right, var(--color-brand), #c457f9)"
+          size="md"
+        />
       </div>
     </div>
   );

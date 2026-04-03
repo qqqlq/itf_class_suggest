@@ -62,10 +62,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen flex flex-col pt-8" style={{ paddingBottom: '4rem' }}>
       <Header studentName={student?.studentName} />
 
-      <main className="flex-1 max-w-5xl w-full mx-auto px-4 py-6 space-y-5">
+      <main className="flex-col max-w-5xl w-full mx-auto px-6" style={{ display: 'flex', gap: '2rem', flex: 1 }}>
         {/* CSV アップローダー */}
         <CsvUploader
           onUpload={handleCsvUpload}
@@ -75,19 +75,19 @@ export default function Home() {
 
         {/* エラー表示 */}
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+          <div className="glass-panel text-danger animate-slide-down" style={{ padding: '1rem', background: '#fef2f2', border: '1px solid #fecaca' }}>
             {error}
           </div>
         )}
 
         {/* メインコンテンツ（CSV読み込み後） */}
         {student && (
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="px-5 pt-4">
+          <div className="glass-panel animate-slide-down" style={{ overflow: 'hidden' }}>
+            <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid var(--color-border)' }}>
               <TabNavigation active={activeTab} onChange={setActiveTab} />
             </div>
 
-            <div className="px-5 py-5">
+            <div style={{ padding: '1.5rem' }}>
               {activeTab === "progress" && (
                 <ProgressDashboard
                   student={student}
@@ -107,16 +107,16 @@ export default function Home() {
               )}
 
               {activeTab === "suggestion" && (
-                <div className="space-y-6">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                   {suggestions.length > 0 ? (
                     <>
                       <CourseSuggestion suggestions={suggestions} />
-                      <div className="border-t border-slate-100 pt-6">
+                      <div style={{ paddingTop: '1.5rem', borderTop: '1px solid var(--color-border)' }}>
                         <TimetableGrid suggestions={suggestions} />
                       </div>
                     </>
                   ) : (
-                    <p className="text-sm text-slate-400 py-8 text-center">
+                    <p className="text-secondary text-center" style={{ padding: '3rem 0' }}>
                       サジェストできる科目がありません
                     </p>
                   )}
@@ -128,14 +128,14 @@ export default function Home() {
 
         {/* 初期状態: 説明 */}
         {!student && !error && (
-          <div className="text-center py-6 text-sm text-slate-400">
-            TWINSから成績CSVをダウンロードして、上のボタンでアップロードしてください
+          <div className="text-center text-sm text-tertiary" style={{ padding: '3rem 0' }}>
+            TWINSから成績CSVをダウンロードして、上の領域にアップロードしてください
           </div>
         )}
       </main>
 
-      <footer className="border-t border-slate-200 bg-white mt-auto">
-        <div className="max-w-5xl mx-auto px-4 py-3 text-center text-xs text-slate-400">
+      <footer className="mt-auto" style={{ borderTop: '1px solid var(--color-border)', background: 'var(--color-surface)', backdropFilter: 'blur(16px)' }}>
+        <div className="max-w-5xl mx-auto px-6 py-4 text-center text-xs text-tertiary">
           履修のすすめ @ITF_mast — 筑波大学 情報メディア創成学類向け
         </div>
       </footer>

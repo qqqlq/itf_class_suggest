@@ -17,6 +17,7 @@ interface CourseCell {
   name: string;
   credits: number;
   completed: boolean;
+  score?: string; // e.g. A+, A, B, C, P
 }
 
 function buildCourseCells(
@@ -34,6 +35,7 @@ function buildCourseCells(
       name: grade.courseName,
       credits: grade.credits,
       completed: true,
+      score: grade.totalGrade,
     });
   });
 
@@ -60,63 +62,64 @@ interface ColumnProps {
   req: RequirementStatus;
   cat: CurriculumCategory;
   cells: CourseCell[];
-  isLast: boolean;
 }
 
-function Column({ groupName, req, cat, cells, isLast }: ColumnProps) {
+function Column({ groupName, req, cat, cells }: ColumnProps) {
   const creditLabel = cat.maxCredits != null
     ? `${req.earnedCredits}/${cat.minCredits}〜${cat.maxCredits}単位`
     : `${req.earnedCredits}/${cat.minCredits}単位`;
 
   return (
-    <div className={`flex flex-col min-w-[160px] ${!isLast ? "border-r border-slate-200" : ""}`}>
+    <div className="course-column glass-panel" style={{ padding: '1rem', flexShrink: 0 }}>
       {/* カラムヘッダー */}
-      <div className="bg-slate-50 px-3 py-2 border-b border-slate-200">
-        <div className="text-xs font-semibold text-slate-600 truncate">{groupName}</div>
-        <div className="text-xs text-slate-400 truncate">{req.categoryName}</div>
-        <div className={`text-xs font-medium mt-0.5 ${req.fulfilled ? "text-emerald-600" : "text-amber-600"}`}>
+      <div style={{ marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
+        <div className="text-xs font-semibold text-secondary" style={{ marginBottom: '0.25rem' }}>{groupName}</div>
+        <div className="text-sm font-bold text-primary">{req.categoryName}</div>
+        <div className={`text-xs font-medium mt-2 ${req.fulfilled ? "text-success" : "text-warning"}`}>
           {creditLabel}
           {req.fulfilled && " ✓"}
         </div>
       </div>
 
-      {/* 科目セル */}
-      <div className="flex-1 divide-y divide-slate-100">
+      {/* 科目セル (Excel風) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         {cells.map((cell) => (
           <div
             key={cell.id}
-            className={`px-3 py-2 ${
-              cell.completed
-                ? "bg-emerald-50 border-l-4 border-emerald-400"
-                : "bg-white border-l-4 border-slate-100"
-            }`}
+            className={`course-cell ${cell.completed ? 'course-cell-acquired' : 'course-cell-unacquired'}`}
           >
-            <div
-              className={`text-xs leading-snug ${
-                cell.completed ? "text-emerald-800" : "text-slate-400"
-              }`}
-            >
-              {cell.completed ? "☑" : "☐"} {cell.name}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+               <div className={`text-sm font-semibold ${cell.completed ? "text-success" : "text-secondary"}`}>
+                 {cell.name}
+               </div>
+               {cell.completed && cell.score && (
+                 <span style={{ fontSize: '0.75rem', fontWeight: 600, padding: '0.125rem 0.375rem', borderRadius: '4px', background: 'rgba(255,255,255,0.7)', color: 'var(--color-success)', border: '1px solid var(--color-success-border)' }}>
+                   {cell.score}
+                 </span>
+               )}
             </div>
-            <div className={`text-xs mt-0.5 ${cell.completed ? "text-emerald-500" : "text-slate-300"}`}>
-              {cell.credits > 0 && `${cell.credits}単位`}
-              <span className="font-mono ml-1">{cell.id}</span>
+            
+            <div className={`text-xs ${cell.completed ? "text-success" : "text-tertiary"}`} style={{ opacity: 0.8, display: 'flex', justifyContent: 'space-between' }}>
+              <span>{cell.credits > 0 ? `${cell.credits}単位` : ''}</span>
+              <span className="font-mono">{cell.id}</span>
             </div>
           </div>
         ))}
         {cells.length === 0 && (
-          <div className="px-3 py-4 text-xs text-slate-300 italic">
-            {cat.prefixes && cat.prefixes.length > 0
-              ? `${cat.prefixes.join(", ")} で始まる科目`
-              : "科目なし"}
+          <div className="course-cell course-cell-unacquired" style={{ opacity: 0.5 }}>
+            <div className="text-xs text-tertiary text-center">
+              {cat.prefixes && cat.prefixes.length > 0
+                ? `${cat.prefixes.join(", ")} で始まる科目`
+                : "科目なし"}
+            </div>
           </div>
         )}
       </div>
 
       {/* プレフィックス注記 */}
       {cat.prefixes && cat.prefixes.length > 0 && cells.length > 0 && (
-        <div className="px-3 py-1.5 border-t border-slate-100 bg-slate-50">
-          <p className="text-xs text-slate-400">
+        <div style={{ marginTop: 'auto', paddingTop: '1rem' }}>
+          <p className="text-xs text-tertiary">
             対象: {cat.prefixes.join(", ")}
           </p>
         </div>
@@ -153,78 +156,38 @@ export default function GraduationTableView({
   const totalPercent = Math.min(100, Math.round((totalEarned / totalRequired) * 100));
 
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* 合計バー */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm px-5 py-3">
-        <div className="flex items-center justify-between text-sm mb-2">
-          <span className="font-semibold text-slate-700">卒業要件合計</span>
-          <span className="text-slate-500">
+      <div className="bento-card" style={{ padding: '1.25rem 1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+          <span className="font-semibold text-primary">卒業要件合計</span>
+          <span className="text-secondary text-sm font-medium">
             {totalEarned} / {totalRequired} 単位 ({totalPercent}%)
           </span>
         </div>
-        <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+        <div style={{ width: '100%', background: 'var(--color-bg)', borderRadius: 'var(--radius-full)', height: '8px', overflow: 'hidden' }}>
           <div
-            className="h-2.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
-            style={{ width: `${totalPercent}%` }}
+            style={{ width: `${totalPercent}%`, background: 'linear-gradient(to right, var(--color-brand), #c457f9)', height: '100%', transition: 'width var(--transition-normal)' }}
           />
         </div>
       </div>
 
-      {/* テーブル */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-          <div className="flex min-w-max">
-            {columns.map((col, idx) => (
-              <Column
-                key={`${col.groupName}-${col.req.categoryName}`}
-                groupName={col.groupName}
-                req={col.req}
-                cat={col.cat}
-                cells={col.cells}
-                isLast={idx === columns.length - 1}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* グループ別合計フッター */}
-        <div className="border-t border-slate-200 bg-slate-50 flex min-w-max overflow-x-auto">
-          {groupRequirements.map((group, gIdx) => {
-            const curriculumGroup = curriculum.groups[gIdx];
-            const catCount = group.categories.length;
-            const groupPercent = Math.min(
-              100,
-              group.minCredits > 0
-                ? Math.round((group.earnedCredits / group.minCredits) * 100)
-                : 100
-            );
-            return (
-              <div
-                key={group.groupName}
-                className="px-3 py-2 border-r border-slate-200"
-                style={{ minWidth: `${catCount * 160}px` }}
-              >
-                <div className="text-xs font-semibold text-slate-600">
-                  {group.groupName}
-                </div>
-                <div className={`text-xs font-medium ${group.fulfilled ? "text-emerald-600" : "text-amber-600"}`}>
-                  {group.earnedCredits}/{group.minCredits}単位
-                  {group.maxCredits != null && ` (上限${group.maxCredits})`}
-                </div>
-                <div className="w-full bg-slate-200 rounded-full h-1 mt-1 overflow-hidden">
-                  <div
-                    className={`h-1 rounded-full ${group.fulfilled ? "bg-emerald-500" : "bg-amber-400"}`}
-                    style={{ width: `${groupPercent}%` }}
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      {/* テーブル (Excelライクなカードグリッド) */}
+      <div className="course-grid">
+        {columns.map((col, idx) => (
+          <Column
+            key={`${col.groupName}-${col.req.categoryName}`}
+            groupName={col.groupName}
+            req={col.req}
+            cat={col.cat}
+            cells={col.cells}
+          />
+        ))}
       </div>
 
-      <p className="text-xs text-slate-400 px-1">
-        ※ 緑のセルは取得済み科目、グレーは未取得。選択科目欄は取得済みのみ表示。
+      <p className="text-xs text-tertiary" style={{ padding: '0 0.5rem' }}>
+        ※ 緑のセルは取得済み科目、グループの背景を白にし見やすく設定しました。<br/>
+        ※ 未取得はグレーの枠のみ。尚、選択科目欄は取得済みのみ表示しています。
       </p>
     </div>
   );

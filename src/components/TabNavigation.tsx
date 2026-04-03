@@ -20,19 +20,39 @@ interface TabNavigationProps {
 
 export default function TabNavigation({ active, onChange }: TabNavigationProps) {
   return (
-    <div className="border-b border-slate-200">
-      <nav className="-mb-px flex gap-1">
+    <div>
+      <nav style={{ display: 'flex', gap: '0.25rem', marginBottom: '-1px' }}>
         {TABS.map((tab) => {
           const isActive = tab.id === active;
           return (
             <button
               key={tab.id}
               onClick={() => onChange(tab.id)}
-              className={`px-5 py-3 text-sm font-medium border-b-2 transition-colors ${
-                isActive
-                  ? "border-blue-500 text-blue-600"
-                  : "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300"
-              }`}
+              className="text-sm font-medium"
+              style={{
+                padding: '0.75rem 1.25rem',
+                borderBottom: isActive ? '2px solid var(--color-brand)' : '2px solid transparent',
+                color: isActive ? 'var(--color-brand)' : 'var(--color-secondary)',
+                background: 'transparent',
+                borderTop: 'none',
+                borderLeft: 'none',
+                borderRight: 'none',
+                cursor: 'pointer',
+                transition: 'all var(--transition-fast)',
+                outline: 'none',
+              }}
+              onMouseOver={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.color = 'var(--color-primary)';
+                  e.currentTarget.style.borderBottomColor = 'var(--color-border)';
+                }
+              }}
+              onMouseOut={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.color = 'var(--color-secondary)';
+                  e.currentTarget.style.borderBottomColor = 'transparent';
+                }
+              }}
             >
               {tab.label}
             </button>

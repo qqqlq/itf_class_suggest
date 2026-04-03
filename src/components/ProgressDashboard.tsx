@@ -26,24 +26,26 @@ export default function ProgressDashboard({
   curriculum,
 }: ProgressDashboardProps) {
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       <StudentInfoBar student={student} totalRequired={totalRequired} />
 
-      <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wide px-1">
+      <div>
+        <h3 className="text-sm font-semibold text-secondary uppercase tracking-wide px-1 mb-4">
           科目分別達成率
         </h3>
-        {groupRequirements.map((group, idx) => {
-          const curriculumGroup = curriculum.groups[idx];
-          return (
-            <CategoryProgressCard
-              key={group.groupName}
-              group={group}
-              courseMaster={courseMaster}
-              curriculumGroup={curriculumGroup}
-            />
-          );
-        })}
+        <div className="bento-grid">
+          {groupRequirements.map((group, idx) => {
+            const curriculumGroup = curriculum.groups[idx];
+            return (
+              <CategoryProgressCard
+                key={group.groupName}
+                group={group}
+                courseMaster={courseMaster}
+                curriculumGroup={curriculumGroup}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <FailedCoursesAlert failedCourses={student.failedCourses} />

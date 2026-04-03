@@ -44,30 +44,30 @@ export default function CategoryProgressCard({
   );
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="bento-card" style={{ padding: 0, overflow: 'hidden' }}>
       {/* グループヘッダー */}
-      <div className="px-5 py-3 bg-slate-50 border-b border-slate-200">
-        <div className="flex items-center justify-between mb-2">
+      <div style={{ padding: '1.25rem 1.5rem', background: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)' }}>
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <StatusIcon fulfilled={group.fulfilled} />
-            <span className="font-semibold text-sm text-slate-800">
+            <span className="font-semibold text-lg text-primary">
               {group.groupName}
             </span>
           </div>
-          <span className="text-xs text-slate-500 font-medium">
+          <span className="font-medium text-sm text-secondary">
             {group.earnedCredits} / {group.minCredits} 単位
             {group.maxCredits != null && ` (上限${group.maxCredits})`}
           </span>
         </div>
         <ProgressBar
           percent={groupPercent}
-          color={group.fulfilled ? "bg-emerald-500" : "bg-amber-400"}
+          color={group.fulfilled ? "var(--color-success)" : "var(--color-brand)"}
           size="md"
         />
       </div>
 
       {/* カテゴリリスト */}
-      <div className="divide-y divide-slate-100">
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         {group.categories.map((req, idx) => {
           const isOpen = openCategories[req.categoryName] ?? false;
           const percent = Math.min(
@@ -83,38 +83,35 @@ export default function CategoryProgressCard({
             curriculumCat?.prefixes && curriculumCat.prefixes.length > 0;
 
           return (
-            <div key={req.categoryName}>
+            <div key={req.categoryName} style={{ borderBottom: '1px solid var(--color-border)' }}>
               {/* カテゴリ行 */}
               <button
-                className="w-full text-left px-5 py-3 hover:bg-slate-50 transition-colors"
+                style={{ width: '100%', textAlign: 'left', padding: '1rem 1.5rem', background: 'transparent', border: 'none', cursor: 'pointer', transition: 'background var(--transition-fast)' }}
+                onMouseOver={(e) => e.currentTarget.style.background = 'var(--color-brand-light)'}
+                onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}
                 onClick={() => toggleCategory(req.categoryName)}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4">
                   <StatusIcon fulfilled={req.fulfilled} />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span
-                        className={`text-sm truncate ${
-                          req.fulfilled ? "text-slate-700" : "text-slate-800 font-medium"
-                        }`}
-                      >
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`text-base truncate ${ req.fulfilled ? "text-secondary" : "text-primary font-medium" }`}>
                         {req.categoryName}
                       </span>
-                      <span className="text-xs text-slate-400 ml-2 shrink-0">
+                      <span className="text-sm font-medium text-tertiary ml-2 shrink-0">
                         {req.earnedCredits} / {req.minCredits}単位
                       </span>
                     </div>
                     <ProgressBar
                       percent={percent}
-                      color={req.fulfilled ? "bg-emerald-400" : "bg-amber-300"}
+                      color={req.fulfilled ? "var(--color-success)" : "var(--color-warning)"}
                       size="sm"
                     />
                   </div>
                   {(hasDetails || hasPrefixes) && (
                     <span
-                      className={`text-slate-400 text-xs ml-1 transition-transform duration-200 ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
+                      className="text-tertiary"
+                      style={{ fontSize: '0.875rem', marginLeft: '0.5rem', transition: 'transform 0.2s', transform: isOpen ? 'rotate(180deg)' : 'none' }}
                     >
                       ▾
                     </span>
@@ -124,22 +121,19 @@ export default function CategoryProgressCard({
 
               {/* 展開: 科目チェックリスト */}
               {isOpen && (
-                <div className="px-5 pb-3 bg-slate-50">
-                  <div className="ml-8 space-y-1">
+                <div style={{ padding: '0 1.5rem 1rem 1.5rem', background: 'var(--color-bg)' }}>
+                  <div style={{ marginLeft: '2.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.5rem' }}>
                     {/* 取得済み科目 */}
                     {req.matchedCourses.map((grade) => (
-                      <div
-                        key={grade.courseId}
-                        className="flex items-center gap-2 py-0.5"
-                      >
-                        <span className="text-emerald-500 text-sm">☑</span>
-                        <span className="text-sm text-emerald-700">
+                      <div key={grade.courseId} className="flex items-center gap-2">
+                        <span className="text-success" style={{ fontSize: '1rem' }}>☑</span>
+                        <span className="text-sm text-success font-medium">
                           {grade.courseName}
                         </span>
-                        <span className="text-xs text-slate-400">
+                        <span className="text-xs text-tertiary">
                           ({grade.credits}単位)
                         </span>
-                        <span className="text-xs text-slate-300 font-mono ml-auto">
+                        <span className="text-xs text-tertiary font-mono" style={{ marginLeft: 'auto' }}>
                           {grade.courseId}
                         </span>
                       </div>
@@ -151,18 +145,15 @@ export default function CategoryProgressCard({
                       const name = course?.name ?? courseId;
                       const credits = course?.credits;
                       return (
-                        <div
-                          key={courseId}
-                          className="flex items-center gap-2 py-0.5"
-                        >
-                          <span className="text-slate-300 text-sm">☐</span>
-                          <span className="text-sm text-slate-500">{name}</span>
+                        <div key={courseId} className="flex items-center gap-2">
+                          <span className="text-tertiary" style={{ fontSize: '1rem' }}>☐</span>
+                          <span className="text-sm text-secondary">{name}</span>
                           {credits != null && (
-                            <span className="text-xs text-slate-400">
+                            <span className="text-xs text-tertiary">
                               ({credits}単位)
                             </span>
                           )}
-                          <span className="text-xs text-slate-300 font-mono ml-auto">
+                          <span className="text-xs text-tertiary font-mono" style={{ marginLeft: 'auto' }}>
                             {courseId}
                           </span>
                         </div>
@@ -171,14 +162,14 @@ export default function CategoryProgressCard({
 
                     {/* 選択科目のプレフィックス注記 */}
                     {hasPrefixes && (
-                      <p className="text-xs text-slate-400 pt-1 border-t border-slate-200 mt-2">
+                      <p className="text-xs text-tertiary" style={{ paddingTop: '0.5rem', borderTop: '1px solid var(--color-border)', marginTop: '0.5rem' }}>
                         対象科目: {curriculumCat.prefixes!.join(", ")} で始まる科目
                       </p>
                     )}
 
                     {/* 何もなければメッセージ */}
                     {!hasDetails && !hasPrefixes && (
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-tertiary">
                         （取得科目なし）
                       </p>
                     )}
