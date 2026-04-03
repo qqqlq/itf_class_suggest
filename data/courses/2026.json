@@ -439,6 +439,165 @@
     "prerequisites": [],
     "instructor": "Atsushi Matsumura,Maki Tokii"
   },
+  "GC11601": {
+    "name": "Probability and Statistics",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "水1",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Mikio Yamamoto"
+  },
+  "GC11701": {
+    "name": "Calculus B",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoshio Sano"
+  },
+  "GC11801": {
+    "name": "Linear Algebra B",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月1",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Ryuji Tokunaga"
+  },
+  "GC12104": {
+    "name": "Computer Literacy",
+    "credits": 1,
+    "standardYear": 4,
+    "modules": [
+      "春A"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Hisashi Nakai"
+  },
+  "GC12301": {
+    "name": "Programming II",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "by appointment",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Masahiko Mikawa"
+  },
+  "GC12401": {
+    "name": "Data Structures and Algorithms",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "火1",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoshihiro Kanamori,Takashi Inui"
+  },
+  "GC12403": {
+    "name": "Data Structures and Algorithms Laboratory",
+    "credits": 1,
+    "standardYear": 3,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "月1",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Takashi Inui,Yoshihiro Kanamori"
+  },
+  "GC12791": {
+    "name": "Programming",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Hisashi Nakai"
+  },
+  "GC13101": {
+    "name": "Computer Systems and Operating Systems",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月5",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Hanxiong Chen"
+  },
+  "GC13201": {
+    "name": "Introduction to Data Engineering",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "火1",
+    "category": "B",
+    "prefixes": [
+      "GC1"
+    ],
+    "prerequisites": [],
+    "instructor": "Zhelin Xu"
+  },
   "GC20101": {
     "name": "Media Sociology",
     "credits": 2,
@@ -799,5 +958,469 @@
     ],
     "prerequisites": [],
     "instructor": "Fumiaki Murakami"
+  },
+  "GC50291": {
+    "name": "Automata and Formal Languages",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木5",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Yukiyoshi Kameyama"
+  },
+  "GC50501": {
+    "name": "Network Communications",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "水1",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Shigetomo Kimura,Sho Tsugawa"
+  },
+  "GC51101": {
+    "name": "Music and Acoustic Information Processing",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋B",
+      "秋C"
+    ],
+    "dayPeriod": "金1",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Nami Iino"
+  },
+  "GC51701": {
+    "name": "Real-World Oriented Systems",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "月3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Masahiko Mikawa"
+  },
+  "GC51901": {
+    "name": "Markup Language",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月1",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Mitsuharu Nagamori"
+  },
+  "GC52001": {
+    "name": "Database Systems I",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春B",
+      "春C"
+    ],
+    "dayPeriod": "金1",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Kei Wakabayashi"
+  },
+  "GC52101": {
+    "name": "Database Systems II",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "火1",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Hanxiong Chen,Atsuyuki Morishima"
+  },
+  "GC52301": {
+    "name": "Frontier Technology in Media Arts",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoichi Ochiai,Jingjing Li"
+  },
+  "GC52401": {
+    "name": "Content Producing",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "瑛彦 高島"
+  },
+  "GC52701": {
+    "name": "Software Construction",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "金3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Hisashi Nakai"
+  },
+  "GC52801": {
+    "name": "Information Design II",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Sangtae Kim"
+  },
+  "GC52901": {
+    "name": "Interaction Design",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "火3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Tomoo Inoue"
+  },
+  "GC53303": {
+    "name": "Digital Content Expression and Arts Laboratory",
+    "credits": 1,
+    "standardYear": 3,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木5",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoichi Ochiai,Jingjing Li"
+  },
+  "GC53401": {
+    "name": "Digital Documents",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [],
+    "dayPeriod": "",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC53502": {
+    "name": "Entertainment Computing Laboratory",
+    "credits": 2,
+    "standardYear": 2,
+    "modules": [
+      "Annual"
+    ],
+    "dayPeriod": "by appointment",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Junichi Hoshino"
+  },
+  "GC53601": {
+    "name": "Introduction to Vision",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Ko Sakai"
+  },
+  "GC53701": {
+    "name": "Mathematical Systems Theory I",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春A"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Ikkyu Aihara,Tohru Kawabe,Yoshito Hirata"
+  },
+  "GC53801": {
+    "name": "Mathematical Systems Theory II",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春C"
+    ],
+    "dayPeriod": "火5",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoshio Sano"
+  },
+  "GC53901": {
+    "name": "Knowledge and Natural Language Processing",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春C"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Mikio Yamamoto"
+  },
+  "GC54091": {
+    "name": "Information Visualization",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "月5",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Kazuo Misue"
+  },
+  "GC54301": {
+    "name": "Mathematical Systems Theory III",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "春B"
+    ],
+    "dayPeriod": "水5",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoshio Sano"
+  },
+  "GC54601": {
+    "name": "Mathematics for Informatics D",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "月1",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Ryuji Tokunaga"
+  },
+  "GC54701": {
+    "name": "Perceptual Psychology",
+    "credits": 1,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "火4",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Hiromi Morita"
+  },
+  "GC54801": {
+    "name": "Lectures on Computer Algebra Systems",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木1",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Shuichi Moritsugu"
+  },
+  "GC54904": {
+    "name": "Advanced Computer Graphics",
+    "credits": 2,
+    "standardYear": 4,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Yoshihiro Kanamori,Makoto Fujisawa,Yuki Endo"
+  },
+  "GC55002": {
+    "name": "Overseas Special Seminar I",
+    "credits": 1,
+    "standardYear": 2,
+    "modules": [],
+    "dayPeriod": "",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC55102": {
+    "name": "Overseas Special Seminar II",
+    "credits": 1,
+    "standardYear": 2,
+    "modules": [],
+    "dayPeriod": "",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": ""
+  },
+  "GC55201": {
+    "name": "Human Information Interaction",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "春A",
+      "春B"
+    ],
+    "dayPeriod": "木3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Hideo Joho"
+  },
+  "GC55301": {
+    "name": "Machine Learning and Information Retrieval",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋A",
+      "秋B"
+    ],
+    "dayPeriod": "火1",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "Haitao Yu"
+  },
+  "GC55401": {
+    "name": "Human-computer Interaction",
+    "credits": 2,
+    "standardYear": 1,
+    "modules": [
+      "秋C"
+    ],
+    "dayPeriod": "月3",
+    "category": "B",
+    "prefixes": [
+      "GC5"
+    ],
+    "prerequisites": [],
+    "instructor": "SunKyoung Kim"
   }
 }

@@ -22,8 +22,10 @@ HEADERS = {
 # 取得対象の科目番号プレフィックス（txtSyllabus検索に使用）
 # 細かく分けることでヒット数を絞り、ページネーションを安定させる
 TARGET_PREFIXES = [
-    "GC20", "GC21", "GC22", "GC23", "GC24", "GC25", "GC26", "GC27",
-    "GA12", "GA13", "GA14", "GA15", "GA18",
+    "GC10", "GC11", "GC12", "GC13",                                    # 専門基礎（必修）
+    "GC20", "GC21", "GC22", "GC23", "GC24", "GC25", "GC26", "GC27",   # 専門基礎（選択）
+    "GC50", "GC51", "GC52", "GC53", "GC54", "GC55",                    # 専門科目（選択）
+    "GA12", "GA13", "GA14", "GA15", "GA18",                            # 情報学群共通
 ]
 
 
@@ -36,7 +38,7 @@ def parse_courses(html: str) -> dict:
         re.DOTALL,
     )
     for code, content in tables:
-        if not re.match(r'^(GC2|GA1|GC27)', code):
+        if not re.match(r'^(GC1|GC2|GC5|GA1)', code):
             continue
 
         tds = re.findall(r'<td[^>]*>(.*?)</td>', content, re.DOTALL)
@@ -72,8 +74,12 @@ def parse_courses(html: str) -> dict:
         category = "B" if code.startswith(("GC", "GA")) else "C"
 
         prefixes = []
-        if re.match(r'^GC2', code):
+        if re.match(r'^GC1', code):
+            prefixes.append("GC1")
+        elif re.match(r'^GC2', code):
             prefixes.append("GC2")
+        elif re.match(r'^GC5', code):
+            prefixes.append("GC5")
         if re.match(r'^GA1', code):
             prefixes.append("GA1")
 

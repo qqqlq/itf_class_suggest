@@ -363,10 +363,77 @@ export default function TimetableGrid({ suggestions }: TimetableGridProps) {
                     </td>
                   );
                 })}
+
               </tr>
             ))}
           </tbody>
         </table>
+
+        {/* 時限未定行（モジュールは分かるが dayPeriod がない科目） */}
+        {(() => {
+          const noSchedule = suggestions.filter(
+            (s) =>
+              (!s.course.dayPeriod || s.course.dayPeriod === "by appointment") &&
+              s.course.modules.includes(selectedModule)
+          );
+          if (noSchedule.length === 0) return null;
+          return (
+            <div
+              style={{
+                borderTop: "2px dashed var(--color-border)",
+                padding: "0.5rem 0.75rem",
+                background: "var(--color-bg)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "0.65rem",
+                  color: "var(--color-tertiary)",
+                  marginBottom: "0.4rem",
+                  fontWeight: 600,
+                }}
+              >
+                {selectedModule} ・ 時限未定
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                {noSchedule.map((s) => {
+                  const ps = PRIORITY_STYLE[s.priority];
+                  return (
+                    <div
+                      key={s.course.id}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.35rem",
+                        padding: "0.3rem 0.6rem",
+                        borderRadius: "6px",
+                        background: ps.bg,
+                        border: `1px solid ${ps.border}`,
+                        fontSize: "0.72rem",
+                      }}
+                      title={`科目番号: ${s.course.id}\n優先度: ${PRIORITY_LABELS[s.priority]}\n理由: ${s.reason}`}
+                    >
+                      <span
+                        style={{
+                          fontSize: "0.6rem",
+                          fontWeight: 700,
+                          padding: "0.1rem 0.3rem",
+                          borderRadius: "3px",
+                          background: ps.badge,
+                          color: "#fff",
+                        }}
+                      >
+                        {PRIORITY_LABELS[s.priority]}
+                      </span>
+                      <span style={{ fontWeight: 600, color: ps.text }}>{s.course.name}</span>
+                      <span style={{ color: ps.text, opacity: 0.7 }}>{s.course.credits}単位</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
       </div>
 
       {/* 凡例 */}
@@ -394,8 +461,11 @@ export default function TimetableGrid({ suggestions }: TimetableGridProps) {
 
       {/* 時間割に乗らない提案 */}
       {(() => {
+        // モジュール情報があるものは時限未定行で表示済み → ここでは modules が空のものだけ
         const unscheduled = suggestions.filter(
-          (s) => !s.course.dayPeriod || s.course.dayPeriod === "by appointment"
+          (s) =>
+            (!s.course.dayPeriod || s.course.dayPeriod === "by appointment") &&
+            s.course.modules.length === 0
         );
         if (unscheduled.length === 0) return null;
         return (
