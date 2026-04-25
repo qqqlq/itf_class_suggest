@@ -150,6 +150,7 @@
           "type": "elective",
           "minCredits": 6,
           "maxCredits": 15,
+          "prefixes": ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
           "excludePrefixes": ["GA", "GB", "GC", "GE"]
         },
         {
@@ -164,7 +165,20 @@
           "type": "elective",
           "minCredits": 0,
           "maxCredits": 9,
-          "prefixes": ["82", "Y", "F"]
+          "prefixes": ["8", "990"]
+        }
+      ]
+    },
+    {
+      "name": "教職課程",
+      "minCredits": 0,
+      "categories": [
+        {
+          "name": "教職課程科目",
+          "type": "elective",
+          "minCredits": 0,
+          "prefixes": ["9"],
+          "excludePrefixes": ["990"]
         }
       ]
     }
